@@ -18,5 +18,6 @@ namespace CookbookBLL
         public static bool DeleteRecipe(Recipe r) {
             return false; 
         }
+        // TODO: Add SearchRecipe and EditRecipe
     }
 }

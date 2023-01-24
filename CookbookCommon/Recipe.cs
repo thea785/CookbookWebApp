@@ -8,7 +8,7 @@ namespace CookbookCommon
 {
     public class Recipe
     {
-        public int Id { get; set; }
+        public int RecipeID { get; set; }
         public string? Name { get; set; }
         public int Servings { get; set; }
         public int PrepTime { get; set; }

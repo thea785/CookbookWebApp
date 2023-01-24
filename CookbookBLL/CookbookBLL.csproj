@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CookbookCommon\CookbookCommon.csproj" />
+    <ProjectReference Include="..\CookbookData\CookbookData.csproj" />
+  </ItemGroup>
+
 </Project>

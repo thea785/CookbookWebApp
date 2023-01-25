@@ -1,4 +1,5 @@
 ﻿using CookbookCommon;
+using CookbookData;
 
 namespace CookbookBLL
 {
@@ -12,8 +13,8 @@ namespace CookbookBLL
         {
             return null;
         }
-        public static bool CreateRecipe(Recipe r) {
-            return false;
+        public static int CreateRecipe(Recipe r) {
+            return RecipesData.CreateRecipe(r);
         }
         public static bool DeleteRecipe(Recipe r) {
             return false; 

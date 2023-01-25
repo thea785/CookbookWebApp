@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using CookbookCommon;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace CookbookData
@@ -9,7 +10,7 @@ namespace CookbookData
             "Data Source=DESKTOP-GPLJ87I;Initial Catalog=Cookbook;Integrated Security=True";
 
         // Add the given recipe to the table and returns its RecipeID
-        public static int CreateRecipe(string name, int servings, int prepTime, int cookTime, string directions)
+        public static int CreateRecipe(Recipe r)
         {
             try
             {
@@ -24,31 +25,31 @@ namespace CookbookData
                         SqlParameter _paramName = _sqlCommand.CreateParameter();
                         _paramName.DbType = DbType.String;
                         _paramName.ParameterName = "@Name";
-                        _paramName.Value = name;
+                        _paramName.Value = r.Name;
                         _sqlCommand.Parameters.Add(_paramName);
 
                         SqlParameter _paramServings = _sqlCommand.CreateParameter();
                         _paramServings.DbType = DbType.Int32;
                         _paramServings.ParameterName = "@Servings";
-                        _paramServings.Value = servings;
+                        _paramServings.Value = r.Servings;
                         _sqlCommand.Parameters.Add(_paramServings);
 
                         SqlParameter _paramPrepTime = _sqlCommand.CreateParameter();
                         _paramPrepTime.DbType = DbType.Int32;
                         _paramPrepTime.ParameterName = "@PrepTime";
-                        _paramPrepTime.Value = prepTime;
+                        _paramPrepTime.Value = r.PrepTime;
                         _sqlCommand.Parameters.Add(_paramPrepTime);
 
                         SqlParameter _paramCookTime = _sqlCommand.CreateParameter();
                         _paramCookTime.DbType = DbType.Int32;
                         _paramCookTime.ParameterName = "@CookTime";
-                        _paramCookTime.Value = cookTime;
+                        _paramCookTime.Value = r.CookTime;
                         _sqlCommand.Parameters.Add(_paramCookTime);
 
                         SqlParameter _paramDirections = _sqlCommand.CreateParameter();
                         _paramDirections.DbType = DbType.String;
                         _paramDirections.ParameterName = "@Directions";
-                        _paramDirections.Value = directions;
+                        _paramDirections.Value = r.Directions;
                         _sqlCommand.Parameters.Add(_paramDirections);
 
                         SqlParameter _paramRecipeIDReturn = _sqlCommand.CreateParameter();
@@ -67,7 +68,7 @@ namespace CookbookData
             }
             catch (Exception ex)
             {
-                //ExceptionLogData.CreateExceptionLog(ex);
+                ExceptionLogData.CreateExceptionLog(ex);
                 return -1;
             }
         }

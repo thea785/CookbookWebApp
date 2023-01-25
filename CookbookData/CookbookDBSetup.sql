@@ -24,6 +24,15 @@ CREATE TABLE Ingredients (
 	[Units] varchar(100)
 );
 
+CREATE TABLE [dbo].[ExceptionLogging](
+	[ExceptionLoggingID] [int] IDENTITY(1,1) PRIMARY KEY,
+	[StackTrace] [nvarchar](1000) NULL,
+	[Message] [nvarchar](100) NOT NULL,
+	[Source] [nvarchar](100) NULL,
+	[Url] [nvarchar](100) NULL,
+	[LogDate] [datetime] NOT NULL
+);
+
 USE Cookbook
 GO
 CREATE PROCEDURE CreateRecipe

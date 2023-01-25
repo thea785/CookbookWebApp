@@ -35,19 +35,12 @@ CREATE TABLE [dbo].[ExceptionLogging](
 
 USE Cookbook
 GO
-CREATE PROCEDURE [dbo].[CreateExceptionLog]
-	@StackTrace nvarchar(1000)
-    ,@Message nvarchar(100)
-    ,@Source nvarchar(100)
-    ,@Url nvarchar(100)
-    ,@LogDate datetime
-	,@parmOutExceptionLoggingID int output
+CREATE PROCEDURE DeleteRecipe
+	@RecipeID int
 AS
 BEGIN
-	SET NOCOUNT ON;
-	INSERT INTO [dbo].[ExceptionLogging] ([StackTrace],[Message],[Source],[Url],[LogDate])
-	VALUES (@StackTrace,@Message,@Source,@Url,@LogDate);
-	SELECT @parmOutExceptionLoggingID = SCOPE_IDENTITY();
+	DELETE FROM Recipes
+	WHERE RecipeID=@RecipeID
 END
 GO
 
@@ -65,5 +58,23 @@ BEGIN
 	INSERT INTO Recipes ([Name], [Servings], [PrepTime], [CookTime], [Directions])
 	VALUES (@Name, @Servings, @PrepTime, @CookTime, @Directions)
 	SELECT @OutRecipeID = SCOPE_IDENTITY();
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE [dbo].[CreateExceptionLog]
+	@StackTrace nvarchar(1000)
+    ,@Message nvarchar(100)
+    ,@Source nvarchar(100)
+    ,@Url nvarchar(100)
+    ,@LogDate datetime
+	,@parmOutExceptionLoggingID int output
+AS
+BEGIN
+	SET NOCOUNT ON;
+	INSERT INTO [dbo].[ExceptionLogging] ([StackTrace],[Message],[Source],[Url],[LogDate])
+	VALUES (@StackTrace,@Message,@Source,@Url,@LogDate);
+	SELECT @parmOutExceptionLoggingID = SCOPE_IDENTITY();
 END
 GO

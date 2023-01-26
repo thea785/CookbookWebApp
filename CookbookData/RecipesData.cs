@@ -77,7 +77,6 @@ namespace CookbookData
         {
             try
             {
-                int _pk = -1;
                 using (SqlConnection con = new SqlConnection(connString))
                 {
                     using (SqlCommand _sqlCommand = new SqlCommand("GetRecipeByID", con))
@@ -129,6 +128,97 @@ namespace CookbookData
             {
                 ExceptionLogData.CreateExceptionLog(ex);
                 return null;
+            }
+        }
+
+        public static int UpdateRecipe(Recipe r)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("CreateRecipe", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramRecipeID = _sqlCommand.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@RecipeID";
+                        var pk = _sqlCommand.Parameters.Add(_paramRecipeID);
+                        _paramRecipeID.Direction = ParameterDirection.Output;
+
+                        SqlParameter _paramName = _sqlCommand.CreateParameter();
+                        _paramName.DbType = DbType.String;
+                        _paramName.ParameterName = "@Name";
+                        _paramName.Value = r.Name;
+                        _sqlCommand.Parameters.Add(_paramName);
+
+                        SqlParameter _paramServings = _sqlCommand.CreateParameter();
+                        _paramServings.DbType = DbType.Int32;
+                        _paramServings.ParameterName = "@Servings";
+                        _paramServings.Value = r.Servings;
+                        _sqlCommand.Parameters.Add(_paramServings);
+
+                        SqlParameter _paramPrepTime = _sqlCommand.CreateParameter();
+                        _paramPrepTime.DbType = DbType.Int32;
+                        _paramPrepTime.ParameterName = "@PrepTime";
+                        _paramPrepTime.Value = r.PrepTime;
+                        _sqlCommand.Parameters.Add(_paramPrepTime);
+
+                        SqlParameter _paramCookTime = _sqlCommand.CreateParameter();
+                        _paramCookTime.DbType = DbType.Int32;
+                        _paramCookTime.ParameterName = "@CookTime";
+                        _paramCookTime.Value = r.CookTime;
+                        _sqlCommand.Parameters.Add(_paramCookTime);
+
+                        SqlParameter _paramDirections = _sqlCommand.CreateParameter();
+                        _paramDirections.DbType = DbType.String;
+                        _paramDirections.ParameterName = "@Directions";
+                        _paramDirections.Value = r.Directions;
+                        _sqlCommand.Parameters.Add(_paramDirections);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery(); // calls the sp
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+                return 0;
+            }
+            return 1;
+        }
+
+        public static void DeleteRecipe(int id)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("DeleteRecipe", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramRecipeID = _sqlCommand.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@RecipeID";
+                        _paramRecipeID.Value = id;
+                        _sqlCommand.Parameters.Add(_paramRecipeID);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
             }
         }
     }

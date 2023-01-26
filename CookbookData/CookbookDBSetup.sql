@@ -74,6 +74,23 @@ GO
 
 USE Cookbook
 GO
+CREATE PROCEDURE UpdateRecipe
+	@RecipeID int,
+	@Name varchar(100),
+	@Servings int,
+	@PrepTime int,
+	@CookTime int,
+	@Directions varchar(1000)
+AS
+BEGIN
+	UPDATE Recipes
+	SET Name=@Name, Servings=@Servings, PrepTime=@PrepTime, CookTime=@CookTime, Directions=@Directions
+	WHERE RecipeID=@RecipeID
+END
+GO
+
+USE Cookbook
+GO
 CREATE PROCEDURE [dbo].[CreateExceptionLog]
 	@StackTrace nvarchar(1000)
     ,@Message nvarchar(100)

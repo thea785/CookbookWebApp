@@ -72,5 +72,64 @@ namespace CookbookData
                 return -1;
             }
         }
+
+        public static Recipe GetRecipeByID(int id)
+        {
+            try
+            {
+                int _pk = -1;
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("GetRecipeByID", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramRecipeID = _sqlCommand.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@RecipeID";
+                        _paramRecipeID.Value = id;
+                        _sqlCommand.Parameters.Add(_paramRecipeID);
+
+                        con.Open();
+
+                        using (SqlDataReader reader = _sqlCommand.ExecuteReader())
+                        {
+                            // Read in Customer records from SqlDataReader
+                            if (reader.Read())
+                            {
+                                Recipe r = new Recipe()
+                                {
+                                    RecipeID = reader["RecipeID"] is DBNull ? 0 : (int)reader["RecipeID"],
+                                    Name = reader["Name"] is DBNull ? "" : (string)reader["Name"],
+                                    Servings = reader["Servings"] is DBNull ? 0 : (int)reader["Servings"],
+                                    PrepTime = reader["PrepTime"] is DBNull ? 0 : (int)reader["PrepTime"],
+                                    CookTime = reader["CookTime"] is DBNull ? 0 : (int)reader["CookTime"],
+                                    Directions = reader["Directions"] is DBNull ? "" : (string)reader["Directions"]
+                                };
+                                if (r.RecipeID == 0)
+                                {
+                                    con.Close();
+                                    return null;
+                                }
+                                else
+                                {
+                                    con.Close();
+                                    return r;
+                                }
+                            }
+                        }
+
+                        con.Close();
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+                return null;
+            }
+        }
     }
 }

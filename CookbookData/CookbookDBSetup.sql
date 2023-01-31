@@ -91,6 +91,22 @@ GO
 
 USE Cookbook
 GO
+CREATE PROCEDURE CreateIngredient
+	@RecipeID int,
+	@Name varchar(100),
+	@Amount int,
+	@Units varchar(100),
+	@OutIngredientID int output
+AS
+BEGIN
+	INSERT INTO Ingredients([RecipeID], [Name], [Amount], [Units])
+	VALUES (@RecipeID, @Name, @Amount, @Units)
+	SELECT @OutIngredientID = SCOPE_IDENTITY();
+END
+GO
+
+USE Cookbook
+GO
 CREATE PROCEDURE [dbo].[CreateExceptionLog]
 	@StackTrace nvarchar(1000)
     ,@Message nvarchar(100)

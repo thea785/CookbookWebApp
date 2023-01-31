@@ -11,14 +11,17 @@ namespace CookbookBLL
         }
         public static Recipe GetRecipeById(int id)
         {
-            return null;
+            return RecipesData.GetRecipeByID(id);
         }
         public static int CreateRecipe(Recipe r) {
             return RecipesData.CreateRecipe(r);
         }
-        public static bool DeleteRecipe(Recipe r) {
+        public static void DeleteRecipe(int id) {
+             RecipesData.DeleteRecipe(id); 
+        }
+        public static bool UpdateRecipe(Recipe r) { 
             return false; 
         }
-        // TODO: Add SearchRecipe and EditRecipe
+        // TODO: Add SearchRecipe
     }
 }

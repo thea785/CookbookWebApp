@@ -107,6 +107,17 @@ GO
 
 USE Cookbook
 GO
+CREATE PROCEDURE GetIngredients
+	@RecipeID int
+AS
+BEGIN
+	SELECT * FROM Ingredients
+	WHERE RecipeID=@RecipeID;
+END
+GO
+
+USE Cookbook
+GO
 CREATE PROCEDURE [dbo].[CreateExceptionLog]
 	@StackTrace nvarchar(1000)
     ,@Message nvarchar(100)

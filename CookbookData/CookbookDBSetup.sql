@@ -1,5 +1,6 @@
 USE MASTER
 GO
+ALTER DATABASE Cookbook set single_user with rollback immediate
 DROP DATABASE IF EXISTS Cookbook;
 
 CREATE DATABASE Cookbook;

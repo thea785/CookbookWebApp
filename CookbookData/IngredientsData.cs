@@ -45,7 +45,7 @@ namespace CookbookData
                         _sqlCommand.Parameters.Add(_paramAmount);
 
                         SqlParameter _paramUnits = _sqlCommand.CreateParameter();
-                        _paramUnits.DbType = DbType.Int32;
+                        _paramUnits.DbType = DbType.String;
                         _paramUnits.ParameterName = "@Units";
                         _paramUnits.Value = ingredient.Units;
                         _sqlCommand.Parameters.Add(_paramUnits);
@@ -115,6 +115,13 @@ namespace CookbookData
                         dbcon.Open(); // Open SqlConnection
 
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        SqlParameter _paramRecipeID = cmd.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@RecipeID";
+                        _paramRecipeID.Value = recipeID;
+                        cmd.Parameters.Add(_paramRecipeID);
+
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             // Read in Customer records from SqlDataReader

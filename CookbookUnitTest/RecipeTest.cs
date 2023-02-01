@@ -12,16 +12,16 @@ namespace CookbookUnitTest
         {
             // Create a recipe and add it to the database
             Recipe r1 = new Recipe() { Name="testRecipe1", Servings=1, PrepTime=10, CookTime=20, Directions="testDirections1"};
-            int id = RecipeBLL.CreateRecipe(r1);
+            int id = RecipesData.CreateRecipe(r1);
 
             // Check if the recipe is in the database
-            Assert.IsNotNull(RecipeBLL.GetRecipeByID(id));
+            Assert.IsNotNull(RecipesData.GetRecipeByID(id));
 
             // Delete the recipe from the database
-            RecipeBLL.DeleteRecipe(id);
+            RecipesData.DeleteRecipe(id);
 
             // Check that the recipe was deleted
-            Assert.IsNull(RecipeBLL.GetRecipeByID(id));
+            Assert.IsNull(RecipesData.GetRecipeByID(id));
         }
 
         [TestMethod]
@@ -46,6 +46,7 @@ namespace CookbookUnitTest
 
             // Check that the recipe was deleted
             Assert.IsNull(RecipeBLL.GetRecipeByID(r2_id));
+            Assert.IsTrue(RecipeBLL.GetIngredients(r2_id).Count == 0);
         }
     }
 }

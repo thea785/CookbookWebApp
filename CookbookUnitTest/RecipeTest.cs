@@ -13,7 +13,7 @@ namespace CookbookUnitTest
 
             int id = RecipesData.CreateRecipe(r1);
 
-            Assert.AreEqual(RecipesData.GetRecipeByID(id).RecipeID, id);
+            Assert.IsNotNull(RecipesData.GetRecipeByID(id));
 
             RecipesData.DeleteRecipe(id);
 

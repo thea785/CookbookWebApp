@@ -45,7 +45,7 @@ namespace CookbookUnitTest
             RecipeBLL.DeleteRecipe(r2_id);
 
             // Check that the recipe was deleted
-            Assert.IsNull(RecipeBLL.GetRecipeByID(id));
+            Assert.IsNull(RecipeBLL.GetRecipeByID(r2_id));
         }
     }
 }

@@ -19,5 +19,11 @@ namespace CookbookUnitTest
 
             Assert.IsNull(RecipesData.GetRecipeByID(id));
         }
+
+        [TestMethod]
+        public void TestCreateRecipeWithIngredients()
+        {
+
+        }
     }
 }

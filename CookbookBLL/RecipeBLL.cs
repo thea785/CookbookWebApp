@@ -9,7 +9,7 @@ namespace CookbookBLL
         {
             return null;
         }
-        public static Recipe GetRecipeById(int id)
+        public static Recipe GetRecipeByID(int id)
         {
             return RecipesData.GetRecipeByID(id);
         }

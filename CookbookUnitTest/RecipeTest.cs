@@ -1,3 +1,4 @@
+using CookbookBLL;
 using CookbookCommon;
 using CookbookData;
 
@@ -11,13 +12,13 @@ namespace CookbookUnitTest
         {
             Recipe r1 = new Recipe() { Name="Turkey Sandwich", Servings=1, PrepTime=5, CookTime=0, Directions="1. Toast Bread Slices 2. Apply Mayo 3. Assemble sandwich"};
 
-            int id = RecipesData.CreateRecipe(r1);
+            int id = RecipeBLL.CreateRecipe(r1);
 
-            Assert.IsNotNull(RecipesData.GetRecipeByID(id));
+            Assert.IsNotNull(RecipeBLL.GetRecipeByID(id));
 
-            RecipesData.DeleteRecipe(id);
+            RecipeBLL.DeleteRecipe(id);
 
-            Assert.IsNull(RecipesData.GetRecipeByID(id));
+            Assert.IsNull(RecipeBLL.GetRecipeByID(id));
         }
 
         [TestMethod]

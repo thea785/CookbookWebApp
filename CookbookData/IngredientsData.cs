@@ -71,6 +71,37 @@ namespace CookbookData
             }
         }
 
+        // Delete all ingredients for a given recipe
+        public static void DeleteIngredients(int recipeID)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("DeleteIngredients", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramRecipeID = _sqlCommand.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@RecipeID";
+                        _paramRecipeID.Value = recipeID;
+                        _sqlCommand.Parameters.Add(_paramRecipeID);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
+
         // Returns a list of ingredients for a given recipe
         public static List<Ingredient> GetIngredients(int recipeID)
         {

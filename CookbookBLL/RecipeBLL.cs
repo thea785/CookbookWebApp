@@ -13,6 +13,10 @@ namespace CookbookBLL
         {
             return RecipesData.GetRecipeByID(id);
         }
+        public static List<Ingredient> GetIngredients(int recipeID)
+        {
+            return IngredientsData.GetIngredients(recipeID);
+        }
         public static int CreateRecipe(Recipe r) {
             return RecipesData.CreateRecipe(r);
         }

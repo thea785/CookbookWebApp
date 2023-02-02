@@ -73,6 +73,48 @@ namespace CookbookData
             }
         }
 
+        public static List<Recipe> GetRecipes()
+        {
+            try
+            {
+                List<Recipe> recipes = new List<Recipe>();
+                using (SqlConnection dbcon = new SqlConnection(connString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("GetRecipes", dbcon))
+                    {
+                        dbcon.Open(); // Open SqlConnection
+
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Read in records from SqlDataReader
+                            while (reader.Read())
+                            {
+                                Recipe r = new Recipe()
+                                {
+                                    RecipeID = reader["RecipeID"] is DBNull ? 0 : (int)reader["RecipeID"],
+                                    Name = reader["Name"] is DBNull ? "" : (string)reader["Name"],
+                                    Servings = reader["Servings"] is DBNull ? 0 : (int)reader["Servings"],
+                                    PrepTime = reader["PrepTime"] is DBNull ? 0 : (int)reader["PrepTime"],
+                                    CookTime = reader["CookTime"] is DBNull ? 0 : (int)reader["CookTime"],
+                                    Directions = reader["Directions"] is DBNull ? "" : (string)reader["Directions"]
+                                };
+
+                                recipes.Add(r);
+                            }
+                        }
+                    }
+                    dbcon.Close();
+                }
+                return recipes;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+                return null;
+            }
+        }
+
         public static Recipe GetRecipeByID(int id)
         {
             try
@@ -94,7 +136,7 @@ namespace CookbookData
 
                         using (SqlDataReader reader = _sqlCommand.ExecuteReader())
                         {
-                            // Read in Customer records from SqlDataReader
+                            // Read in records from SqlDataReader
                             if (reader.Read())
                             {
                                 Recipe r = new Recipe()

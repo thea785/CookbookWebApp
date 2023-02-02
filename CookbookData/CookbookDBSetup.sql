@@ -75,6 +75,16 @@ GO
 
 USE Cookbook
 GO
+CREATE PROCEDURE GetRecipes
+AS
+BEGIN
+	SELECT * FROM Recipes;
+END
+GO
+
+
+USE Cookbook
+GO
 CREATE PROCEDURE UpdateRecipe
 	@RecipeID int,
 	@Name varchar(100),

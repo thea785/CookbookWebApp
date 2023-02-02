@@ -1,6 +1,7 @@
 using CookbookBLL;
 using CookbookCommon;
 using CookbookData;
+using System.Xml.Linq;
 
 namespace CookbookUnitTest
 {
@@ -47,6 +48,26 @@ namespace CookbookUnitTest
             // Check that the recipe was deleted
             Assert.IsNull(RecipeBLL.GetRecipeByID(r2_id));
             Assert.IsTrue(RecipeBLL.GetIngredients(r2_id).Count == 0);
+        }
+
+        [TestMethod]
+        public void TestGetRecipes()
+        {
+            // Create two recipes and add them to the database
+            Recipe r3 = new Recipe() { Name = "testRecipe3", Servings = 1, PrepTime = 10, CookTime = 20, Directions = "testDirections3" };
+            Recipe r4 = new Recipe() { Name = "testRecipe4", Servings = 1, PrepTime = 10, CookTime = 20, Directions = "testDirections4" };
+            int r3_id = RecipesData.CreateRecipe(r3);
+            int r4_id = RecipesData.CreateRecipe(r4);
+
+            // Check if the recipes are in the database
+            List<Recipe> recipes = RecipesData.GetRecipes();
+            Assert.IsNotNull(recipes);
+            Assert.IsTrue(recipes.Any(r => r.Name == "testRecipe3"));
+            Assert.IsTrue(recipes.Any(r => r.Name == "testRecipe4"));
+
+            // Delete the recipe from the database
+            RecipesData.DeleteRecipe(r3_id);
+            RecipesData.DeleteRecipe(r3_id);
         }
     }
 }

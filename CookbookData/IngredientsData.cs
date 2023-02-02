@@ -21,7 +21,7 @@ namespace CookbookData
                 int _pk = -1;
                 using (SqlConnection con = new SqlConnection(connString))
                 {
-                    using (SqlCommand _sqlCommand = new SqlCommand("CreateRecipe", con))
+                    using (SqlCommand _sqlCommand = new SqlCommand("CreateIngredient", con))
                     {
                         _sqlCommand.CommandType = CommandType.StoredProcedure;
                         _sqlCommand.CommandTimeout = 30;

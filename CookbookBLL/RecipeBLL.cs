@@ -23,7 +23,7 @@ namespace CookbookBLL
             // Add its ingredients
             foreach(Ingredient ingredientItem in r.Ingredients)
             {
-                System.Console.WriteLine(ingredientItem.Name);
+                ingredientItem.RecipeID = recipeID;
                 IngredientsData.CreateIngredient(ingredientItem);
             }
             // Return the recipe's id

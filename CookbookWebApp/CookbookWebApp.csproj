@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CookbookBLL\CookbookBLL.csproj" />
+    <ProjectReference Include="..\CookbookCommon\CookbookCommon.csproj" />
+  </ItemGroup>
+
 </Project>

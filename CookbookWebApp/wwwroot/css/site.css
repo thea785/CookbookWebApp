@@ -20,3 +20,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+ul {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 10px;
+}
+
+ul li > div {
+    width: 100px;
+}

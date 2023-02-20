@@ -7,7 +7,7 @@ namespace CookbookBLL
     {
         public static List<Recipe> GetRecipes()
         {
-            return null;
+            return RecipesData.GetRecipes();
         }
         public static Recipe GetRecipeByID(int id)
         {

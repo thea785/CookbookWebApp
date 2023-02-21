@@ -155,3 +155,19 @@ BEGIN
 	SELECT @parmOutExceptionLoggingID = SCOPE_IDENTITY();
 END
 GO
+
+DECLARE @Newline AS CHAR(2) = CHAR(13) + CHAR(10)
+
+INSERT INTO Recipes ([Name], [Servings], [PrepTime], [CookTime], [Directions])
+	VALUES ('Chicken Parmesean', 6, 20, 30, '1. Preheat oven to 400. Combine bread crumbs and seasoning.' + @Newline + '2. Dip chicken breasts in egg, then coat with crumbs.' + @Newline + '3. Bake chicken 20 mins.' + @Newline + '4. Pour over pasta sauce. Top with mozzarella cheese. Bake 10 mins.');
+
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (1, 'Bread Crumbs', 1, 'cups');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (1, 'Italian Seasoning', 1, 'tsp');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (1, 'Chicken Breast Halves', 6, 'count');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (1, 'Pasta Sauce', 3, 'cups');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (1, 'Shredded Mozzarella Cheese', 1, 'cups');

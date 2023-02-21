@@ -11,7 +11,9 @@ namespace CookbookBLL
         }
         public static Recipe GetRecipeByID(int id)
         {
-            return RecipesData.GetRecipeByID(id);
+            Recipe recipe = RecipesData.GetRecipeByID(id);
+            recipe.Ingredients = GetIngredients(id);
+            return recipe;
         }
         public static List<Ingredient> GetIngredients(int recipeID)
         {

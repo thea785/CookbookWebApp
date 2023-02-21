@@ -67,7 +67,7 @@ namespace CookbookUnitTest
 
             // Delete the recipe from the database
             RecipesData.DeleteRecipe(r3_id);
-            RecipesData.DeleteRecipe(r3_id);
+            RecipesData.DeleteRecipe(r4_id);
         }
     }
 }

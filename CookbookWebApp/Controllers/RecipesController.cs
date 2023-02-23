@@ -33,9 +33,11 @@ namespace CookbookWebApp.Controllers
         }
 
         // View details of a given recipe
-        public IActionResult Recipe(int recipeID)
+        public IActionResult GetRecipe(int id)
         {
-            return View();
+            RecipeModel recipeModel = Mapper.RecipeToRecipeModel(RecipeBLL.GetRecipeByID(id));
+
+            return View(recipeModel);
         }
 
         // Delete a given recipe

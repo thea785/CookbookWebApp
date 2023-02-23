@@ -15,7 +15,7 @@
                 <h5 class="card-title">@recipe.Name</h5>
                 <pre class="card-text">Prep Time: @recipe.PrepTime min</pre>
                 <pre class="card-text">Cook Time: @recipe.CookTime min</pre>
-            <a href="#" class="btn btn-success stretched-link">View Recipe</a>
+                <a asp-controller="Recipes" asp-action="GetRecipe" asp-route-id="@recipe.RecipeID" method="get" class="btn btn-success" style="width:150px">View Recipe</a>
             </div>
         </div>
     </li>

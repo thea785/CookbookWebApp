@@ -1,0 +1,22 @@
+﻿@model RecipeModel
+
+@{
+    ViewData["Title"] = Model.Name + " Recipe";
+}
+
+
+
+<div class="container">
+    <h1 class="text-light">@ViewData["Title"]</h1>
+  <div class="row row-cols-auto">
+        <div class="col text-light">
+            <b>Servings: @Model.Servings</b>
+    </div>
+        <div class="col text-light">
+      Column
+    </div>
+        <div class="col text-light">
+      Column
+    </div>
+  </div>
+</div>

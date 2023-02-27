@@ -7,16 +7,24 @@
 
 
 <div class="container">
-  <h1 class="text-light">@ViewData["Title"]</h1>
-  <div class="row row-cols-auto">
-    <div class="col text-light">
-        <b>Servings: @Model.Servings</b>
+    <h1 class="text-light">@ViewData["Title"]</h1>
+    <div class="row row-cols-auto">
+        <div class="col text-light">
+            <b>Servings: @Model.Servings</b>
+        </div>
+        <div class="col text-light">
+            <b>Prep Time: @Model.PrepTime</b>
+        </div>
+        <div class="col text-light">
+            <b>Cook Time: @Model.CookTime</b>
+        </div>
     </div>
-    <div class="col text-light">
-        <b>Prep Time: @Model.PrepTime</b>
-    </div>
-    <div class="col text-light">
-        <b>Cook Time: @Model.CookTime</b>
-    </div>
-  </div>
+    <h4 style="margin-top:20px" class="text-light">Ingredients:</h4>
+    @if (Model.Ingredients != null)
+        @foreach (IngredientModel i in Model.Ingredients)
+        {
+            <p class="text-light"><b>@i.Amount &nbsp; @i.Units</b>&nbsp; @i.Name</p>
+        }
+    <h4 style="margin-top:20px" class="text-light">Directions:</h4>
+    <pre class="text-light">@Model.Directions</pre>
 </div>

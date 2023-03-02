@@ -6,16 +6,19 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace CookbookData
 {
     public static class IngredientsData
     {
-        const string connString =
-            "Data Source=DESKTOP-GPLJ87I;Initial Catalog=Cookbook;Integrated Security=True";
+        //const string connString =
+        //    "Data Source=DESKTOP-GPLJ87I;Initial Catalog=Cookbook;Integrated Security=True";
 
         public static int CreateIngredient(Ingredient ingredient)
         {
+            string connString = System.IO.File.ReadAllText("ConnectionString");
+
             try
             {
                 int _pk = -1;
@@ -74,6 +77,8 @@ namespace CookbookData
         // Delete all ingredients for a given recipe
         public static void DeleteIngredients(int recipeID)
         {
+            string connString = System.IO.File.ReadAllText("ConnectionString");
+
             try
             {
                 using (SqlConnection con = new SqlConnection(connString))
@@ -105,6 +110,8 @@ namespace CookbookData
         // Returns a list of ingredients for a given recipe
         public static List<Ingredient> GetIngredients(int recipeID)
         {
+            string connString = System.IO.File.ReadAllText("ConnectionString");
+
             List<Ingredient> ingredients = new List<Ingredient>();
             try
             {

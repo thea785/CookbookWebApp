@@ -1,17 +1,20 @@
 ﻿using CookbookCommon;
 using System.Data;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace CookbookData
 {
     public static class RecipesData
     {
-        const string connString =
-            "Data Source=DESKTOP-GPLJ87I;Initial Catalog=Cookbook;Integrated Security=True";
+        //const string connString =
+        //    "Data Source=DESKTOP-GPLJ87I;Initial Catalog=Cookbook;Integrated Security=True";
 
         // Add the given recipe to the table and returns its RecipeID
         public static int CreateRecipe(Recipe r)
         {
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+
             try
             {
                 int _pk = -1;
@@ -75,6 +78,8 @@ namespace CookbookData
 
         public static List<Recipe> GetRecipes()
         {
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+
             try
             {
                 List<Recipe> recipes = new List<Recipe>();
@@ -117,6 +122,8 @@ namespace CookbookData
 
         public static Recipe GetRecipeByID(int id)
         {
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+
             try
             {
                 using (SqlConnection con = new SqlConnection(connString))
@@ -175,6 +182,8 @@ namespace CookbookData
 
         public static int UpdateRecipe(Recipe r)
         {
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+
             try
             {
                 using (SqlConnection con = new SqlConnection(connString))
@@ -236,6 +245,8 @@ namespace CookbookData
 
         public static void DeleteRecipe(int id)
         {
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+
             try
             {
                 using (SqlConnection con = new SqlConnection(connString))

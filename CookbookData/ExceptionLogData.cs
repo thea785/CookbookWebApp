@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Configuration;
 using System.Data.SqlClient;
 
 
@@ -6,10 +7,10 @@ namespace CookbookData
 {
     public static class ExceptionLogData
     {
-        const string connString =
-            "Data Source=DESKTOP-GPLJ87I;Initial Catalog=Cookbook;Integrated Security=True";
         public static int CreateExceptionLog(Exception inException)
         {
+            string connString = System.IO.File.ReadAllText("ConnectionString");
+
             int _pk = 0;
             using (SqlConnection con = new SqlConnection(connString))
             {

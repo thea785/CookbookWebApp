@@ -9,7 +9,7 @@ namespace CookbookData
     {
         public static int CreateExceptionLog(Exception inException)
         {
-            string connString = System.IO.File.ReadAllText("ConnectionString");
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
 
             int _pk = 0;
             using (SqlConnection con = new SqlConnection(connString))

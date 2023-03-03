@@ -17,7 +17,7 @@ namespace CookbookData
 
         public static int CreateIngredient(Ingredient ingredient)
         {
-            string connString = System.IO.File.ReadAllText("ConnectionString");
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
 
             try
             {
@@ -77,7 +77,7 @@ namespace CookbookData
         // Delete all ingredients for a given recipe
         public static void DeleteIngredients(int recipeID)
         {
-            string connString = System.IO.File.ReadAllText("ConnectionString");
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
 
             try
             {
@@ -110,7 +110,7 @@ namespace CookbookData
         // Returns a list of ingredients for a given recipe
         public static List<Ingredient> GetIngredients(int recipeID)
         {
-            string connString = System.IO.File.ReadAllText("ConnectionString");
+            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
 
             List<Ingredient> ingredients = new List<Ingredient>();
             try

@@ -27,7 +27,15 @@ namespace CookbookWebApp.Controllers
         }
 
         // Redirect to Create view
-        public IActionResult Create()
+        [HttpGet]
+        public IActionResult CreateRecipe()
+        {
+            return View();
+        }
+
+        // Submit create recipe form
+        [HttpPost]
+        public IActionResult CreateRecipe(RecipeModel m)
         {
             return View();
         }

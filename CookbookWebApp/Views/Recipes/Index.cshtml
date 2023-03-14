@@ -3,8 +3,11 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="d-flex justify-content-between">
+    <h3 class="text-light">Recipes</h3>
+    <a asp-controller="Recipes" asp-action="CreateRecipe" method="get" class="btn btn-primary mb-3" style="width:200px">Create Recipe</a>
+</div>
 
-<h3 class="text-light">Recipes</h3>
 
 <ul class="grid">
     @foreach (var recipe in Model)

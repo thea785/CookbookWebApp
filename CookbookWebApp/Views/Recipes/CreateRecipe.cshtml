@@ -1,0 +1,39 @@
+﻿@model RecipeModel
+@{
+    ViewData["Title"] = "New Recipe";
+}
+<h1 class="text-light">@ViewData["Title"]</h1>
+
+<form asp-controller="Recipes" class="" method="post">
+    <div class="border border-secondary text-light p-3 mt-4">
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control text-light bg-secondary border-secondary" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Servings"></label>
+            <input asp-for="Servings" class="form-control text-light bg-secondary border-secondary" />
+            <span asp-validation-for="Servings" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PrepTime"></label>
+            <input asp-for="PrepTime" class="form-control text-light bg-secondary border-secondary" />
+            <span asp-validation-for="PrepTime" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CookTime"></label>
+            <input asp-for="CookTime" class="form-control text-light bg-secondary border-secondary" />
+            <span asp-validation-for="CookTime" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Directions"></label>
+            <input asp-for="Directions" class="form-control text-light bg-secondary border-secondary" />
+            <span asp-validation-for="Directions" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success" style="width:150px">Create</button>
+        <a asp-controller="Recipes" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Cancel
+        </a>
+    </div>
+</form> 

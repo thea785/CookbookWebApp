@@ -37,7 +37,10 @@ namespace CookbookWebApp.Controllers
         [HttpPost]
         public IActionResult CreateRecipe(RecipeModel m)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View();
+
+            return RedirectToAction("Index");
         }
 
         // View details of a given recipe

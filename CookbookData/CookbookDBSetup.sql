@@ -171,6 +171,11 @@ BEGIN
 END
 GO
 
+
+INSERT INTO Roles (RoleName) VALUES ('Guest');
+INSERT INTO Roles (RoleName) VALUES ('Viewer');
+INSERT INTO Roles (RoleName) VALUES ('Creator');
+
 DECLARE @Newline AS CHAR(2) = CHAR(13) + CHAR(10)
 
 INSERT INTO Recipes ([Name], [Servings], [PrepTime], [CookTime], [Directions])

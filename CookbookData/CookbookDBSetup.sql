@@ -8,6 +8,21 @@ GO
 USE Cookbook
 GO
 
+CREATE TABLE [Roles] (
+	 RoleID int IDENTITY(1,1) PRIMARY KEY,
+	 RoleName varchar(255) UNIQUE
+);
+
+CREATE TABLE [Users] (
+	UserID int IDENTITY(1,1) PRIMARY KEY,
+	RoleID int FOREIGN KEY REFERENCES Roles(RoleID),
+	Email varchar(20) NOT NULL UNIQUE,
+	FirstName varchar(20) NOT NULL,
+	LastName varchar(20) NOT NULL,
+	HashedPassword varchar(MAX),
+	Salt varchar(255)
+);
+
 CREATE TABLE Recipes (
 	[RecipeID] int IDENTITY(1,1) PRIMARY KEY,
 	[Name] varchar(100) NOT NULL,

@@ -13,7 +13,8 @@ namespace CookbookData
         // Add the given recipe to the table and returns its RecipeID
         public static int CreateRecipe(Recipe r)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -78,7 +79,8 @@ namespace CookbookData
 
         public static List<Recipe> GetRecipes()
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -122,7 +124,8 @@ namespace CookbookData
 
         public static Recipe GetRecipeByID(int id)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -182,7 +185,8 @@ namespace CookbookData
 
         public static int UpdateRecipe(Recipe r)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -245,7 +249,8 @@ namespace CookbookData
 
         public static void DeleteRecipe(int id)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {

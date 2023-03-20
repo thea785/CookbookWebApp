@@ -12,12 +12,11 @@ namespace CookbookData
 {
     public static class IngredientsData
     {
-        //const string connString =
-        //    "Data Source=DESKTOP-GPLJ87I;Initial Catalog=Cookbook;Integrated Security=True";
 
         public static int CreateIngredient(Ingredient ingredient)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -77,7 +76,8 @@ namespace CookbookData
         // Delete all ingredients for a given recipe
         public static void DeleteIngredients(int recipeID)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -110,7 +110,8 @@ namespace CookbookData
         // Returns a list of ingredients for a given recipe
         public static List<Ingredient> GetIngredients(int recipeID)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             List<Ingredient> ingredients = new List<Ingredient>();
             try

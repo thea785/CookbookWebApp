@@ -8,7 +8,8 @@ namespace CookbookData
     {
         public static int CreateUser(int roleID, string email, string firstName, string lastName, string hashedPassword, string salt)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -79,7 +80,8 @@ namespace CookbookData
 
         public static void DeleteUser(int userID)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -110,7 +112,8 @@ namespace CookbookData
 
         public static void UpdateUserPassword(string email, string newHashedPassword, string newSalt)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -153,7 +156,8 @@ namespace CookbookData
 
         public static List<User> GetAllUsers()
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -199,7 +203,8 @@ namespace CookbookData
 
         public static User GetUserByEmail(string email)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {
@@ -259,7 +264,8 @@ namespace CookbookData
 
         public static void EditUser(int userID, int roleID, string email, string firstName, string lastName)
         {
-            string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
+            string connString = ConnectionStringReader.Get();
 
             try
             {

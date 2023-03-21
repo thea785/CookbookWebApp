@@ -11,6 +11,14 @@ namespace CookbookWebApp.Controllers
         // Returns index view of recipes
         public IActionResult Index()
         {
+            // Set session for guest
+            if (HttpContext.Session.GetInt32("UserID") == null)
+            {
+                HttpContext.Session.SetInt32("UserID", -1);
+                HttpContext.Session.SetInt32("RoleID", 1);
+                HttpContext.Session.SetString("Email", "");
+            }
+
             // Get Recipes and convert them to RecipeModel objects
             List<Recipe> recipes = RecipeBLL.GetRecipes();
             List<RecipeModel> recipeModels = new List<RecipeModel>();

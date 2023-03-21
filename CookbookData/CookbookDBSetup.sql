@@ -172,6 +172,66 @@ END
 GO
 
 
+USE Cookbook
+GO
+CREATE PROCEDURE CreateUser
+	-- Add the parameters for the stored procedure here
+	@RoleID int,
+	@Email varchar(20),
+	@FirstName varchar(20),
+	@LastName varchar(20),
+	@HashedPassword varchar(MAX),
+	@Salt varchar(255),
+	@paramOutUserID int output
+AS
+BEGIN
+	-- Insert statements for procedure here
+	INSERT INTO Users (RoleID, Email, FirstName, LastName, HashedPassword, Salt)
+	VALUES (@RoleID,@Email,@FirstName,@LastName,@HashedPassword,@Salt);
+	SELECT @paramOutUserID = SCOPE_IDENTITY();
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE GetAllUsers
+	-- Add the parameters for the stored procedure here
+AS
+BEGIN
+	-- Insert statements for procedure here
+	SELECT * FROM Users;
+END
+GO
+
+
+USE Cookbook
+GO
+CREATE PROCEDURE GetUserByEmail
+	-- Add the parameters for the stored procedure here
+	@paramEmail varchar(255)
+AS
+BEGIN
+	-- Insert statements for procedure here
+	SELECT * 
+	FROM Users
+	WHERE Users.Email=@paramEmail;
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE DeleteUser
+	-- Add the parameters for the stored procedure here
+	@paramUserID int
+AS
+BEGIN
+	-- Insert statements for procedure here
+	DELETE FROM Users
+	WHERE UserID = @paramUserID;
+END
+GO
+
+
 INSERT INTO Roles (RoleName) VALUES ('Guest');
 INSERT INTO Roles (RoleName) VALUES ('Viewer');
 INSERT INTO Roles (RoleName) VALUES ('Creator');

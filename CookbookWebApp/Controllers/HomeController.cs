@@ -37,6 +37,17 @@ namespace CookbookWebApp.Controllers
             return RedirectToAction("Index", "Dashboard");
         }
 
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyEmail(string email)
+        {
+            if (UsersBLL.VerifyEmail(email) == false)
+            {
+                return Json($"Email {email} is already in use.");
+            }
+
+            return Json(true);
+        }
+
         [HttpGet]
         public IActionResult Login()
         {

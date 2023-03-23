@@ -33,8 +33,8 @@ namespace CookbookWebApp.Controllers
             HttpContext.Session.SetString("Email", m.Email);
             HttpContext.Session.SetInt32("RoleID", 2);
 
-            // Go to dashboard
-            return RedirectToAction("Index", "Dashboard");
+            // Go to index
+            return RedirectToAction("Index", "Recipes");
         }
 
         [AcceptVerbs("Get", "Post")]
@@ -70,8 +70,8 @@ namespace CookbookWebApp.Controllers
             HttpContext.Session.SetString("Email", m.Email);
             HttpContext.Session.SetInt32("RoleID", roleID);
 
-            // Go to dashboard
-            return RedirectToAction("Index", "Dashboard");
+            // Go to index
+            return RedirectToAction("Index", "Recipes");
         }
 
         public IActionResult Logout()

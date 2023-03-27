@@ -81,7 +81,7 @@ namespace CookbookWebApp.Controllers
             HttpContext.Session.SetInt32("RoleID", 1);
             HttpContext.Session.SetString("Email", "");
             // Go to index
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Recipes");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -40,6 +40,13 @@ CREATE TABLE Ingredients (
 	[Units] varchar(100)
 );
 
+CREATE TABLE Reviews (
+	[ReviewID] int IDENTITY(1,1) PRIMARY KEY,
+	[RecipeID] int FOREIGN KEY REFERENCES Recipes(RecipeID),
+	[UserID] int FOREIGN KEY REFERENCES Users(UserID),
+	[Text] varchar(100)
+);
+
 CREATE TABLE [dbo].[ExceptionLogging](
 	[ExceptionLoggingID] [int] IDENTITY(1,1) PRIMARY KEY,
 	[StackTrace] [nvarchar](1000) NULL,

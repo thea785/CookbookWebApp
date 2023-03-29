@@ -41,5 +41,42 @@ namespace CookbookWebApp
             // Return the recipe model
             return _rmodel;
         }
+
+        public static Recipe ModelToRecipe(RecipeModel r)
+        {
+            // Create a recipe object to return
+            Recipe _recipe = new Recipe()
+            {
+                RecipeID = r.RecipeID,
+                Name = r.Name,
+                Servings = r.Servings,
+                PrepTime = r.PrepTime,
+                CookTime = r.CookTime,
+                Directions = r.Directions,
+                Ingredients = new List<Ingredient>()
+            };
+
+            // Check for null ingredients in parameter
+            if (r.Ingredients == null)
+            {
+                return _recipe;
+            }
+
+            // Copy ingredient values into 
+            foreach (IngredientModel iModel in r.Ingredients)
+            {
+                _recipe.Ingredients.Add(new Ingredient()
+                {
+                    IngredientID = iModel.IngredientID,
+                    RecipeID = iModel.RecipeID,
+                    Name = iModel.Name,
+                    Amount = iModel.Amount,
+                    Units = iModel.Units
+                });
+            }
+
+            // Return the recipe model
+            return _recipe;
+        }
     }
 }

@@ -48,6 +48,8 @@ namespace CookbookWebApp.Controllers
             if (!ModelState.IsValid)
                 return View();
 
+            RecipeBLL.CreateRecipe(Mapper.ModelToRecipe(m));
+
             return RedirectToAction("Index");
         }
 

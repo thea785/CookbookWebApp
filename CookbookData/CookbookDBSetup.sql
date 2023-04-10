@@ -44,7 +44,7 @@ CREATE TABLE Reviews (
 	[ReviewID] int IDENTITY(1,1) PRIMARY KEY,
 	[RecipeID] int FOREIGN KEY REFERENCES Recipes(RecipeID),
 	[UserID] int FOREIGN KEY REFERENCES Users(UserID),
-	[Text] varchar(100)
+	[ReviewText] varchar(100)
 );
 
 CREATE TABLE [dbo].[ExceptionLogging](
@@ -238,6 +238,55 @@ BEGIN
 END
 GO
 
+USE Cookbook
+GO
+CREATE PROCEDURE CreateReview
+	@RecipeID int,
+	@UserID int,
+	@ReviewText varchar(100),
+	@paramOutReviewID int output
+AS
+BEGIN
+	INSERT INTO [Reviews] (RecipeID, UserID, ReviewText)
+	VALUES (@RecipeID, @UserID, @ReviewText);
+	SELECT @paramOutReviewID = SCOPE_IDENTITY();
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE DeleteReview
+	@ReviewID int
+AS
+BEGIN
+	DELETE FROM Reviews
+	WHERE ReviewID = @ReviewID;
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE GetReviewsByRecipeID
+	@RecipeID int
+AS
+BEGIN
+	SELECT * 
+	FROM Reviews
+	WHERE Reviews.RecipeID=@RecipeID;
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE GetReviewsByUserID
+	@UserID int
+AS
+BEGIN
+	SELECT * 
+	FROM Reviews
+	WHERE Reviews.UserID=@UserID;
+END
+GO
 
 INSERT INTO Roles (RoleName) VALUES ('Guest');
 INSERT INTO Roles (RoleName) VALUES ('Viewer');

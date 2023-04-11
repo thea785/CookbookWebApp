@@ -320,6 +320,9 @@ INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
 INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
 	VALUES (1, 'Shredded Mozzarella Cheese', 1, 'cups');
 
+INSERT INTO Reviews ([RecipeID], [UserID], [ReviewText])
+	VALUES (1, 2, 'Great taste and very easy to make. I used a bottled tomato sauce with basil.');
+
 INSERT INTO Recipes ([Name], [Servings], [PrepTime], [CookTime], [Directions])
 VALUES ('Grilled Cheese Sandwich', 1, 2, 10, '1. Spread butter on the outer side of the bread.' + @Newline + '2. Heat a skillet on medium. Place bread on skillet.' + @Newline + '3. Stack cheeses on the bread. Once toasted, close the sandwich.' + @Newline + '4. Cook for six minutes or until brown. Cut diagonally and serve.');
 
@@ -333,3 +336,6 @@ INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
 	VALUES (2, 'Gouda Cheese', 1, 'slice');
 INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
 	VALUES (2, 'Havarti Cheese', 1, 'slice');
+
+INSERT INTO Reviews ([RecipeID], [UserID], [ReviewText])
+	VALUES (2, 2, 'I cannot recommend. This recipe uses too much cheese.');

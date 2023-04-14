@@ -15,5 +15,6 @@ namespace CookbookCommon
         public int CookTime { get; set; }
         public string? Directions { get; set; }
         public List<Ingredient>? Ingredients { get; set;}
+        public List<Review>? Reviews { get; set; }
     }
 }

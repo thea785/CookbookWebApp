@@ -244,12 +244,12 @@ CREATE PROCEDURE CreateReview
 	@RecipeID int,
 	@UserID int,
 	@ReviewText varchar(100),
-	@paramOutReviewID int output
+	@OutReviewID int output
 AS
 BEGIN
 	INSERT INTO [Reviews] (RecipeID, UserID, ReviewText)
 	VALUES (@RecipeID, @UserID, @ReviewText);
-	SELECT @paramOutReviewID = SCOPE_IDENTITY();
+	SELECT @OutReviewID = SCOPE_IDENTITY();
 END
 GO
 

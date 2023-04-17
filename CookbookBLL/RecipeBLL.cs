@@ -19,6 +19,12 @@ namespace CookbookBLL
         {
             return IngredientsData.GetIngredients(recipeID);
         }
+
+        public static List<Review> GetReviewsByRecipeID(int id)
+        {
+            return ReviewsData.GetReviewsByRecipeID(id);
+        }
+
         public static int CreateRecipe(Recipe r) {
             // Create the recipe
             int recipeID = RecipesData.CreateRecipe(r);
@@ -38,9 +44,10 @@ namespace CookbookBLL
             // Then, delete the recipe
              RecipesData.DeleteRecipe(recipeID); 
         }
+
         public static bool UpdateRecipe(Recipe r) { 
             return false; 
         }
-        // TODO: Add SearchRecipe
+        
     }
 }

@@ -6,9 +6,6 @@ namespace CookbookData
 {
     public static class ReviewsData
     {
-        //const string connString =
-        //    "Data Source=DESKTOP-GPLJ87I;Initial Catalog=Cookbook;Integrated Security=True";
-
         // Add the given recipe to the table and returns its RecipeID
         public static int CreateReview(Review r)
         {
@@ -63,67 +60,8 @@ namespace CookbookData
             }
         }
 
-        public static Review GetReviewByRecipeIDff(int id)
-        {
-            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
-            string connString = ConnectionStringReader.Get();
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(connString))
-                {
-                    using (SqlCommand _sqlCommand = new SqlCommand("GetReviewsByRecipeID", con))
-                    {
-                        _sqlCommand.CommandType = CommandType.StoredProcedure;
-                        _sqlCommand.CommandTimeout = 30;
-
-                        SqlParameter _paramRecipeID = _sqlCommand.CreateParameter();
-                        _paramRecipeID.DbType = DbType.Int32;
-                        _paramRecipeID.ParameterName = "@RecipeID";
-                        _paramRecipeID.Value = id;
-                        _sqlCommand.Parameters.Add(_paramRecipeID);
-
-                        con.Open();
-
-                        using (SqlDataReader reader = _sqlCommand.ExecuteReader())
-                        {
-                            // Read in records from SqlDataReader
-                            if (reader.Read())
-                            {
-                                Review r = new Review()
-                                {
-                                    ReviewID = reader["ReviewID"] is DBNull ? 0 : (int)reader["ReviewID"],
-                                    RecipeID = reader["RecipeID"] is DBNull ? 0 : (int)reader["RecipeID"],
-                                    UserID = reader["UserID"] is DBNull ? 0 : (int)reader["UserID"],
-                                    ReviewText = reader["ReviewText"] is DBNull ? "" : (string)reader["ReviewText"]
-                                };
-                                if (r.RecipeID == 0)
-                                {
-                                    con.Close();
-                                    return null;
-                                }
-                                else
-                                {
-                                    con.Close();
-                                    return r;
-                                }
-                            }
-                        }
-
-                        con.Close();
-                        return null;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLogData.CreateExceptionLog(ex);
-                return null;
-            }
-        }
-
         // Returns a list of reviews for a given recipe
-        public static List<Review> GetReviewByRecipeID(int recipeID)
+        public static List<Review> GetReviewsByRecipeID(int recipeID)
         {
             string connString = ConnectionStringReader.Get();
 
@@ -146,7 +84,7 @@ namespace CookbookData
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            // Read in Customer records from SqlDataReader
+                            // Read in rows from SqlDataReader
                             while (reader.Read())
                             {
                                 Review _review  = new Review()
@@ -222,9 +160,9 @@ namespace CookbookData
             }
         }
 
+        // Deletes the given review
         public static void DeleteReview(int id)
         {
-            //string connString = System.IO.File.ReadAllText("../CookbookData/ConnectionString");
             string connString = ConnectionStringReader.Get();
 
             try

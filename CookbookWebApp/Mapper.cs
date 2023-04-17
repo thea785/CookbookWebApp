@@ -25,7 +25,7 @@ namespace CookbookWebApp
                 return _rmodel;
             }
 
-            // Copy ingredient values into 
+            // Copy ingredient values 
             foreach(Ingredient ingredient in r.Ingredients)
             {
                 _rmodel.Ingredients.Add(new IngredientModel()
@@ -35,6 +35,18 @@ namespace CookbookWebApp
                     Name = ingredient.Name,
                     Amount = ingredient.Amount,
                     Units= ingredient.Units
+                });
+            }
+
+            // Copy Review values
+            foreach (Review currentReview in r.Reviews)
+            {
+                _rmodel.Reviews.Add(new ReviewModel()
+                {
+                    ReviewID = currentReview.ReviewID,
+                    RecipeID = currentReview.RecipeID,
+                    UserID = currentReview.UserID,
+                    ReviewText = currentReview.ReviewText
                 });
             }
 

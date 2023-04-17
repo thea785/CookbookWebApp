@@ -19,5 +19,6 @@ namespace CookbookWebApp.Models
         [Required]
         public string? Directions { get; set; }
         public List<IngredientModel>? Ingredients { get; set; }
+        public List<ReviewModel>? Reviews { get; set; }
     }
 }

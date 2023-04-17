@@ -13,6 +13,7 @@ namespace CookbookBLL
         {
             Recipe recipe = RecipesData.GetRecipeByID(id);
             if (recipe != null) recipe.Ingredients = GetIngredients(id);
+            if (recipe != null) recipe.Reviews = GetReviewsByRecipeID(id);
             return recipe;
         }
         public static List<Ingredient> GetIngredients(int recipeID)

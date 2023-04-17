@@ -32,8 +32,12 @@
 <div>
     <span class="h2 text-light">Reviews:</span>
     <button class="btn btn-success text-light float-end">Add Review</button>
-    <div class="container bg-secondary p-3 m-4">
-        <p class="text-light">username@email.com</p>
-        <p class="text-light">This is a test review of a recipe.</p>
-    </div>
+    @if (Model.Reviews != null)
+        @foreach (ReviewModel rm in Model.Reviews)
+        {
+            <div class="container bg-secondary p-3 m-4">
+                <p class="text-light">@rm.UserID</p>
+                <p class="text-light">@rm.ReviewText</p>
+            </div>
+        }
 </div>

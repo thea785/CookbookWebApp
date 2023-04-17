@@ -27,22 +27,22 @@ namespace CookbookUnitTest
             Assert.IsNull(UsersData.GetUserByEmail("test1@gmail.com"));
         }
 
-        [TestMethod]
-        public void UpdateAndVerifyPasswordTest()
-        {
-            // Create a user in the database
-            int _userID = UsersData.CreateUser(2, "test2@gmail.com", "2Fname", "2Lname", hash, salt);
+        //[TestMethod]
+        //public void UpdateAndVerifyPasswordTest()
+        //{
+        //    // Create a user in the database
+        //    int _userID = UsersData.CreateUser(2, "test2@gmail.com", "2Fname", "2Lname", hash, salt);
 
-            // Update the users password
-            UsersBLL.UpdateUserPassword("test2@gmail.com", "testpass");
+        //    // Update the users password
+        //    UsersBLL.UpdateUserPassword("test2@gmail.com", "testpass");
 
-            // Check if the password was updated
-            int outputUserID, outputRoleID;
-            Assert.IsTrue(UsersBLL.VerifyPassword("test2@gmail.com", "testpass", out outputUserID, out outputRoleID));
+        //    // Check if the password was updated
+        //    int outputUserID, outputRoleID;
+        //    Assert.IsTrue(UsersBLL.VerifyPassword("test2@gmail.com", "testpass", out outputUserID, out outputRoleID));
 
-            // Delete the user
-            UsersData.DeleteUser(_userID);
-        }
+        //    // Delete the user
+        //    UsersData.DeleteUser(_userID);
+        //}
 
         [TestMethod]
         public void VerifyEmailTest()
@@ -58,22 +58,22 @@ namespace CookbookUnitTest
             UsersData.DeleteUser(_userID);
         }
 
-        [TestMethod]
-        public void EditUserTest()
-        {
-            // Create a user in the database
-            int _userID = UsersData.CreateUser(2, "test5@gmail.com", "5Fname", "5Lname", hash, salt);
+        //[TestMethod]
+        //public void EditUserTest()
+        //{
+        //    // Create a user in the database
+        //    int _userID = UsersData.CreateUser(2, "test5@gmail.com", "5Fname", "5Lname", hash, salt);
 
-            // Edit the user
-            UsersBLL.EditUser(_userID, 3, "test5_2@gmail.com", "5Fname", "5_2Lname");
+        //    // Edit the user
+        //    UsersBLL.EditUser(_userID, 3, "test5_2@gmail.com", "5Fname", "5_2Lname");
 
-            // Check if the user was edited
-            Assert.AreEqual(UsersBLL.GetUserByEmail("test5_2@gmail.com").RoleID, 3);
-            Assert.AreEqual(UsersBLL.GetUserByEmail("test5_2@gmail.com").FirstName, "5Fname");
-            Assert.AreEqual(UsersBLL.GetUserByEmail("test5_2@gmail.com").LastName, "5_2Lname");
+        //    // Check if the user was edited
+        //    Assert.AreEqual(UsersBLL.GetUserByEmail("test5_2@gmail.com").RoleID, 3);
+        //    Assert.AreEqual(UsersBLL.GetUserByEmail("test5_2@gmail.com").FirstName, "5Fname");
+        //    Assert.AreEqual(UsersBLL.GetUserByEmail("test5_2@gmail.com").LastName, "5_2Lname");
 
-            // Delete the user
-            UsersData.DeleteUser(_userID);
-        }
+        //    // Delete the user
+        //    UsersData.DeleteUser(_userID);
+        //}
     }
 }

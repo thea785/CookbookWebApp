@@ -29,6 +29,11 @@ namespace CookbookBLL
             return ReviewsData.GetReviewsByRecipeID(id);
         }
 
+        public static void DeleteReview(int reviewID)
+        {
+            ReviewsData.DeleteReview(reviewID);
+        }
+
         public static int CreateRecipe(Recipe r) {
             // Create the recipe
             int recipeID = RecipesData.CreateRecipe(r);
@@ -54,8 +59,11 @@ namespace CookbookBLL
         public static void DeleteRecipe(int recipeID) {
             // First, delete the recipe's ingredients
             IngredientsData.DeleteIngredients(recipeID);
+
+            // Delete the recipe's reviews
+            //ReviewsData.DeleteReviewsByRecipeID(recipeID);
             
-            // Then, delete the recipe
+            // Finally, delete the recipe
              RecipesData.DeleteRecipe(recipeID); 
         }
 

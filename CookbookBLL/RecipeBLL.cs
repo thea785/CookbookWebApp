@@ -32,6 +32,10 @@ namespace CookbookBLL
         public static int CreateRecipe(Recipe r) {
             // Create the recipe
             int recipeID = RecipesData.CreateRecipe(r);
+
+            if (r.Ingredients == null)
+                return recipeID;
+
             // Add its ingredients
             foreach(Ingredient ingredientItem in r.Ingredients)
             {

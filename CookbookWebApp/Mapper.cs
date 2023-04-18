@@ -16,7 +16,8 @@ namespace CookbookWebApp
                 PrepTime = r.PrepTime,
                 CookTime = r.CookTime,
                 Directions = r.Directions,
-                Ingredients = new List<IngredientModel>()
+                Ingredients = new List<IngredientModel>(),
+                Reviews = new List<ReviewModel>()
             };
 
             // Check for null ingredients in parameter
@@ -37,6 +38,9 @@ namespace CookbookWebApp
                     Units= ingredient.Units
                 });
             }
+
+            if (r.Reviews == null)
+                return _rmodel;
 
             // Copy Review values
             foreach (Review currentReview in r.Reviews)

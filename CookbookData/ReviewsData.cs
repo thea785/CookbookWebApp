@@ -6,7 +6,7 @@ namespace CookbookData
 {
     public static class ReviewsData
     {
-        // Add the given recipe to the table and returns its RecipeID
+        // Add the given recipe to the table and returns its ReviewID
         public static int CreateReview(Review r)
         {
             string connString = ConnectionStringReader.Get();
@@ -92,7 +92,7 @@ namespace CookbookData
                                     ReviewID = reader["ReviewID"] is DBNull ? 0 : (int)reader["ReviewID"],
                                     RecipeID = reader["RecipeID"] is DBNull ? 0 : (int)reader["RecipeID"],
                                     UserID = reader["UserID"] is DBNull ? 0 : (int)reader["UserID"],
-                                    ReviewText = reader["ReviewText"] is DBNull ? "" : (string)reader["Name"]
+                                    ReviewText = reader["ReviewText"] is DBNull ? "" : (string)reader["ReviewText"]
                                 };
 
                                 reviews.Add(_review);

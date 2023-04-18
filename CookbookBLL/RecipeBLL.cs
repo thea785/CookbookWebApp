@@ -12,8 +12,11 @@ namespace CookbookBLL
         public static Recipe GetRecipeByID(int id)
         {
             Recipe recipe = RecipesData.GetRecipeByID(id);
-            if (recipe != null) recipe.Ingredients = GetIngredients(id);
-            if (recipe != null) recipe.Reviews = GetReviewsByRecipeID(id);
+            if (recipe != null)
+            {
+                recipe.Ingredients = GetIngredients(id);
+                recipe.Reviews = GetReviewsByRecipeID(id);
+            }
             return recipe;
         }
         public static List<Ingredient> GetIngredients(int recipeID)
@@ -38,6 +41,12 @@ namespace CookbookBLL
             // Return the recipe's id
             return recipeID;
         }
+
+        public static int CreateReview(Review rev) 
+        {
+            return ReviewsData.CreateReview(rev);
+        }
+
         public static void DeleteRecipe(int recipeID) {
             // First, delete the recipe's ingredients
             IngredientsData.DeleteIngredients(recipeID);

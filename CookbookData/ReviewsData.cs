@@ -192,5 +192,71 @@ namespace CookbookData
                 ExceptionLogData.CreateExceptionLog(ex);
             }
         }
+
+        // Deletes reviews of a given recipe
+        public static void DeleteReviewsByRecipeID(int recipeID)
+        {
+            string connString = ConnectionStringReader.Get();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("DeleteReviewsByRecipeID", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramReviewID = _sqlCommand.CreateParameter();
+                        _paramReviewID.DbType = DbType.Int32;
+                        _paramReviewID.ParameterName = "@RecipeID";
+                        _paramReviewID.Value = recipeID;
+                        _sqlCommand.Parameters.Add(_paramReviewID);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
+
+        // Deletes reviews of a given user
+        public static void DeleteReviewsByUserID(int userID)
+        {
+            string connString = ConnectionStringReader.Get();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("DeleteReviewsByUserID", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramReviewID = _sqlCommand.CreateParameter();
+                        _paramReviewID.DbType = DbType.Int32;
+                        _paramReviewID.ParameterName = "@UserID";
+                        _paramReviewID.Value = userID;
+                        _sqlCommand.Parameters.Add(_paramReviewID);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
     }
 }

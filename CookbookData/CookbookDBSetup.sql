@@ -288,6 +288,28 @@ BEGIN
 END
 GO
 
+USE Cookbook
+GO
+CREATE PROCEDURE DeleteReviewsByRecipeID
+	@RecipeID int
+AS
+BEGIN
+	DELETE FROM Reviews
+	WHERE Reviews.RecipeID=@RecipeID;
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE DeleteReviewsByUserID
+	@UserID int
+AS
+BEGIN
+	DELETE FROM Reviews
+	WHERE Reviews.UserID=@UserID;
+END
+GO
+
 INSERT INTO Roles (RoleName) VALUES ('Guest');
 INSERT INTO Roles (RoleName) VALUES ('Viewer');
 INSERT INTO Roles (RoleName) VALUES ('Creator');

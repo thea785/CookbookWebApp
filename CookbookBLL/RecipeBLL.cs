@@ -33,6 +33,15 @@ namespace CookbookBLL
         {
             ReviewsData.DeleteReview(reviewID);
         }
+        public static void DeleteReviewsByRecipeID(int recipeID)
+        {
+            ReviewsData.DeleteReviewsByRecipeID(recipeID);
+        }
+
+        public static void DeleteReviewsByUserID(int userID)
+        {
+            ReviewsData.DeleteReviewsByUserID(userID);
+        }
 
         public static int CreateRecipe(Recipe r) {
             // Create the recipe

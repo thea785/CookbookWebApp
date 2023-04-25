@@ -51,6 +51,35 @@ namespace CookbookUnitTest
         }
 
         [TestMethod]
+        public void TestCreateRecipeWithReviews()
+        {
+            // Create a recipe with ingredients and add it to the database
+            Recipe r2 = new Recipe() { Name = "testRecipe2", Servings = 1, PrepTime = 10, CookTime = 20, Directions = "testDirections2" };
+            int r2_id = RecipeBLL.CreateRecipe(r2);
+
+            // Check if the recipe is in the database
+            Assert.IsNotNull(RecipeBLL.GetRecipeByID(r2_id));
+
+            // Add reviews
+            Review review1 = new Review() { RecipeID = r2_id, UserID = 1, ReviewText = "Example Text One" };
+            Review review2 = new Review() { RecipeID = r2_id, UserID = 1, ReviewText = "Example Text Two" };
+            RecipeBLL.CreateReview(review1);
+            RecipeBLL.CreateReview(review2);
+
+            // Check if the recipe has the associated reviews 
+            Assert.IsTrue(RecipeBLL.GetReviewsByRecipeID(r2_id).Any(rev => rev.ReviewText == "Example Text One"));
+            Assert.IsTrue(RecipeBLL.GetReviewsByRecipeID(r2_id).Any(rev => rev.ReviewText == "Example Text Two"));
+
+            // Clean up the reviews and recipes
+            RecipeBLL.DeleteReviewsByRecipeID(r2_id);
+            RecipeBLL.DeleteRecipe(r2_id);
+
+            // Check that the recipe was deleted
+            Assert.IsNull(RecipeBLL.GetRecipeByID(r2_id));
+            Assert.IsTrue(RecipeBLL.GetReviewsByRecipeID(r2_id).Count == 0);
+        }
+
+        [TestMethod]
         public void TestGetRecipes()
         {
             // Create two recipes and add them to the database

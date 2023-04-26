@@ -28,9 +28,9 @@ namespace CookbookData
                         _sqlCommand.Parameters.Add(_paramRecipeID);
 
                         SqlParameter _paramUserID = _sqlCommand.CreateParameter();
-                        _paramUserID.DbType = DbType.Int32;
-                        _paramUserID.ParameterName = "@UserID";
-                        _paramUserID.Value = r.UserID;
+                        _paramUserID.DbType = DbType.String;
+                        _paramUserID.ParameterName = "@UserEmail";
+                        _paramUserID.Value = r.UserEmail;
                         _sqlCommand.Parameters.Add(_paramUserID);
 
                         SqlParameter _paramReviewText = _sqlCommand.CreateParameter();
@@ -91,7 +91,7 @@ namespace CookbookData
                                 {
                                     ReviewID = reader["ReviewID"] is DBNull ? 0 : (int)reader["ReviewID"],
                                     RecipeID = reader["RecipeID"] is DBNull ? 0 : (int)reader["RecipeID"],
-                                    UserID = reader["UserID"] is DBNull ? 0 : (int)reader["UserID"],
+                                    UserEmail = reader["UserEmail"] is DBNull ? "" : (string)reader["UserEmail"],
                                     ReviewText = reader["ReviewText"] is DBNull ? "" : (string)reader["ReviewText"]
                                 };
 
@@ -111,7 +111,7 @@ namespace CookbookData
         }
 
         // Returns a list of reviews for a given user
-        public static List<Review> GetReviewByUserID(int userID)
+        public static List<Review> GetReviewByUserID(string userEmail)
         {
             string connString = ConnectionStringReader.Get();
 
@@ -126,11 +126,11 @@ namespace CookbookData
 
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        SqlParameter _paramUserID = cmd.CreateParameter();
-                        _paramUserID.DbType = DbType.Int32;
-                        _paramUserID.ParameterName = "@UserID";
-                        _paramUserID.Value = userID;
-                        cmd.Parameters.Add(_paramUserID);
+                        SqlParameter _paramUserEmail = cmd.CreateParameter();
+                        _paramUserEmail.DbType = DbType.String;
+                        _paramUserEmail.ParameterName = "@UserEmail";
+                        _paramUserEmail.Value = userEmail;
+                        cmd.Parameters.Add(_paramUserEmail);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -141,7 +141,7 @@ namespace CookbookData
                                 {
                                     ReviewID = reader["ReviewID"] is DBNull ? 0 : (int)reader["ReviewID"],
                                     RecipeID = reader["RecipeID"] is DBNull ? 0 : (int)reader["RecipeID"],
-                                    UserID = reader["UserID"] is DBNull ? 0 : (int)reader["UserID"],
+                                    UserEmail = reader["UserEmail"] is DBNull ? "" : (string)reader["UserEmail"],
                                     ReviewText = reader["ReviewText"] is DBNull ? "" : (string)reader["Name"]
                                 };
 
@@ -207,11 +207,11 @@ namespace CookbookData
                         _sqlCommand.CommandType = CommandType.StoredProcedure;
                         _sqlCommand.CommandTimeout = 30;
 
-                        SqlParameter _paramReviewID = _sqlCommand.CreateParameter();
-                        _paramReviewID.DbType = DbType.Int32;
-                        _paramReviewID.ParameterName = "@RecipeID";
-                        _paramReviewID.Value = recipeID;
-                        _sqlCommand.Parameters.Add(_paramReviewID);
+                        SqlParameter _paramRecipeID = _sqlCommand.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@RecipeID";
+                        _paramRecipeID.Value = recipeID;
+                        _sqlCommand.Parameters.Add(_paramRecipeID);
 
                         con.Open();
                         _sqlCommand.ExecuteNonQuery();
@@ -227,7 +227,7 @@ namespace CookbookData
         }
 
         // Deletes reviews of a given user
-        public static void DeleteReviewsByUserID(int userID)
+        public static void DeleteReviewsByUserEmail(string userEmail)
         {
             string connString = ConnectionStringReader.Get();
 
@@ -235,16 +235,16 @@ namespace CookbookData
             {
                 using (SqlConnection con = new SqlConnection(connString))
                 {
-                    using (SqlCommand _sqlCommand = new SqlCommand("DeleteReviewsByUserID", con))
+                    using (SqlCommand _sqlCommand = new SqlCommand("DeleteReviewsByUserEmail", con))
                     {
                         _sqlCommand.CommandType = CommandType.StoredProcedure;
                         _sqlCommand.CommandTimeout = 30;
 
-                        SqlParameter _paramReviewID = _sqlCommand.CreateParameter();
-                        _paramReviewID.DbType = DbType.Int32;
-                        _paramReviewID.ParameterName = "@UserID";
-                        _paramReviewID.Value = userID;
-                        _sqlCommand.Parameters.Add(_paramReviewID);
+                        SqlParameter _paramUserEmail = _sqlCommand.CreateParameter();
+                        _paramUserEmail.DbType = DbType.String;
+                        _paramUserEmail.ParameterName = "@UserEmail";
+                        _paramUserEmail.Value = userEmail;
+                        _sqlCommand.Parameters.Add(_paramUserEmail);
 
                         con.Open();
                         _sqlCommand.ExecuteNonQuery();

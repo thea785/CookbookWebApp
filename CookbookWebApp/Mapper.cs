@@ -49,7 +49,7 @@ namespace CookbookWebApp
                 {
                     ReviewID = currentReview.ReviewID,
                     RecipeID = currentReview.RecipeID,
-                    UserID = currentReview.UserID,
+                    UserEmail = currentReview.UserEmail,
                     ReviewText = currentReview.ReviewText
                 });
             }

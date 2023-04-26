@@ -38,9 +38,9 @@ namespace CookbookBLL
             ReviewsData.DeleteReviewsByRecipeID(recipeID);
         }
 
-        public static void DeleteReviewsByUserID(int userID)
+        public static void DeleteReviewsByUserID(string userEmail)
         {
-            ReviewsData.DeleteReviewsByUserID(userID);
+            ReviewsData.DeleteReviewsByUserEmail(userEmail);
         }
 
         public static int CreateRecipe(Recipe r) {

@@ -36,8 +36,10 @@
         @foreach (ReviewModel rm in Model.Reviews)
         {
             <div class="container bg-secondary p-3 m-4">
-                <span class="text-light">@rm.UserID</span>
-                <a asp-controller="Reviews" asp-action="DeleteReview" asp-route-reviewid="@rm.ReviewID" asp-route-recipeid="@rm.RecipeID" method="get" class="btn btn-danger m-3">Delete</a>
+                <div class="d-flex justify-content-between">
+                    <span class="text-light">@rm.UserEmail</span>
+                    <a asp-controller="Reviews" asp-action="DeleteReview" asp-route-reviewid="@rm.ReviewID" asp-route-recipeid="@rm.RecipeID" method="get" class="btn btn-danger">Delete</a>
+                </div>
                 <p class="text-light">@rm.ReviewText</p>
             </div>
         }

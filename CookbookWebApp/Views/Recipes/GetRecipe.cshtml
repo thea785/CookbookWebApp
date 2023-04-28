@@ -38,7 +38,14 @@
             <div class="container bg-secondary p-3 m-4">
                 <div class="d-flex justify-content-between">
                     <span class="text-light">@rm.UserEmail</span>
-                    <a asp-controller="Reviews" asp-action="DeleteReview" asp-route-reviewid="@rm.ReviewID" asp-route-recipeid="@rm.RecipeID" method="get" class="btn btn-danger">Delete</a>
+                    @if (Context.Session.GetInt32("RoleID") > 2 || Context.Session.GetString("Email") == rm.UserEmail)
+                    {
+                        <a asp-controller="Reviews" asp-action="DeleteReview" asp-route-reviewid="@rm.ReviewID" asp-route-recipeid="@rm.RecipeID" method="get" class="btn btn-danger">Delete</a>
+                    }
+                    else
+                    {
+                        <pre> </pre>
+                    }
                 </div>
                 <p class="text-light">@rm.ReviewText</p>
             </div>

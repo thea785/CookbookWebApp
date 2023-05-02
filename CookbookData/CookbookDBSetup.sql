@@ -321,6 +321,28 @@ GO
 
 USE Cookbook
 GO
+CREATE PROCEDURE GetFavoritesByRecipeID
+	@RecipeID int
+AS
+BEGIN
+	SELECT * FROM Favorites
+	WHERE Favorites.RecipeID=@RecipeID;
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE GetFavoritesByUserID
+	@UserID int
+AS
+BEGIN
+	SELECT * FROM Favorites
+	WHERE Favorites.UserID=@UserID;
+END
+GO
+
+USE Cookbook
+GO
 CREATE PROCEDURE DeleteFavorite
 	@RecipeID int,
 	@UserID int
@@ -345,7 +367,7 @@ GO
 USE Cookbook
 GO
 CREATE PROCEDURE DeleteFavoritesByUserID
-	@RecipeID int
+	@UserID int
 AS
 BEGIN
 	DELETE FROM Favorites

@@ -123,5 +123,104 @@ namespace CookbookData
                 return favs;
             }
         }
+        // Deletes a specific Favorite
+        public static void DeleteFavorite(int recipeID, int userID)
+        {
+            string connString = ConnectionStringReader.Get();
+
+            List<int> favs = new List<int>();
+            try
+            {
+                using (SqlConnection dbcon = new SqlConnection(connString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DeleteFavorite", dbcon))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        SqlParameter _paramRecipeID = cmd.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@RecipeID";
+                        _paramRecipeID.Value = recipeID;
+                        cmd.Parameters.Add(_paramRecipeID);
+
+                        SqlParameter _paramUserID = cmd.CreateParameter();
+                        _paramUserID.DbType = DbType.Int32;
+                        _paramUserID.ParameterName = "@UserID";
+                        _paramUserID.Value = userID;
+                        cmd.Parameters.Add(_paramUserID);
+
+                        dbcon.Open();
+                        cmd.ExecuteNonQuery();
+                        dbcon.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
+        // Deletes all Favorites for a recipe
+        public static void DeleteFavoritesByRecipeID(int recipeID)
+        {
+            string connString = ConnectionStringReader.Get();
+
+            List<int> favs = new List<int>();
+            try
+            {
+                using (SqlConnection dbcon = new SqlConnection(connString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DeleteFavoritesByRecipeID", dbcon))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        SqlParameter _paramRecipeID = cmd.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@RecipeID";
+                        _paramRecipeID.Value = recipeID;
+                        cmd.Parameters.Add(_paramRecipeID);
+
+                        dbcon.Open();
+                        cmd.ExecuteNonQuery();
+                        dbcon.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
+        // Deletes Favorites for a user
+        public static void DeleteFavoritesByUserID(int userID)
+        {
+            string connString = ConnectionStringReader.Get();
+
+            List<int> favs = new List<int>();
+            try
+            {
+                using (SqlConnection dbcon = new SqlConnection(connString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DeleteFavorite", dbcon))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        SqlParameter _paramUserID = cmd.CreateParameter();
+                        _paramUserID.DbType = DbType.Int32;
+                        _paramUserID.ParameterName = "@UserID";
+                        _paramUserID.Value = userID;
+                        cmd.Parameters.Add(_paramUserID);
+
+                        dbcon.Open();
+                        cmd.ExecuteNonQuery();
+                        dbcon.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
     }
 }

@@ -47,6 +47,11 @@ CREATE TABLE Reviews (
 	[ReviewText] varchar(100)
 );
 
+CREATE TABLE Favorites (
+	[UserID] int FOREIGN KEY REFERENCES Users(UserID),
+	[RecipeID] int FOREIGN KEY REFERENCES Recipes(RecipeID)
+);
+
 CREATE TABLE [dbo].[ExceptionLogging](
 	[ExceptionLoggingID] [int] IDENTITY(1,1) PRIMARY KEY,
 	[StackTrace] [nvarchar](1000) NULL,
@@ -310,6 +315,52 @@ BEGIN
 END
 GO
 
+USE Cookbook
+GO
+CREATE PROCEDURE CreateFavorite
+	@RecipeID int,
+	@UserID int
+AS
+BEGIN
+	INSERT INTO Favorites ([RecipeID], [UserID])
+	VALUES (@RecipeID, @UserID);
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE DeleteFavorite
+	@RecipeID int,
+	@UserID int
+AS
+BEGIN
+	DELETE FROM Favorites
+	WHERE Favorites.UserID=@UserID AND Favorites.RecipeID=@RecipeID;
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE DeleteFavoritesByRecipeID
+	@RecipeID int
+AS
+BEGIN
+	DELETE FROM Favorites
+	WHERE Favorites.RecipeID=@RecipeID;
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE DeleteFavoritesByUserID
+	@RecipeID int
+AS
+BEGIN
+	DELETE FROM Favorites
+	WHERE Favorites.UserID=@UserID;
+END
+GO
+
 INSERT INTO Roles (RoleName) VALUES ('Guest');
 INSERT INTO Roles (RoleName) VALUES ('Viewer');
 INSERT INTO Roles (RoleName) VALUES ('Creator');
@@ -345,7 +396,14 @@ INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
 INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
 	VALUES (1, 'mary@gmail.com', 'Great taste and very easy to make. I used a bottled tomato sauce with basil.');
 INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
+	VALUES (1, 'joseph@gmail.com', 'I followed the instructions exactly, but the chicken came out tough and the cheese didn''t melt properly.')
+INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
 	VALUES (1, 'david@gmail.com', 'My family loved it. It was easy to follow.');
+INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
+	VALUES (1, 'ruth@gmail.com', 'I''m usually not a fan of chicken, but this dish converted me. It''s now a regular in my meal rotation.');
+
+INSERT INTO Favorites ([RecipeID], [UserID])
+	VALUES (1, 2), (5, 2);
 
 INSERT INTO Recipes ([Name], [Servings], [PrepTime], [CookTime], [Directions])
 VALUES ('Grilled Cheese Sandwich', 1, 2, 10, '1. Spread butter on the outer side of the bread.' + @Newline + '2. Heat a skillet on medium. Place bread on skillet.' + @Newline + '3. Stack cheeses on the bread. Once toasted, close the sandwich.' + @Newline + '4. Cook for six minutes or until brown. Cut diagonally and serve.');
@@ -362,4 +420,4 @@ INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
 	VALUES (2, 'Havarti Cheese', 1, 'slice');
 
 INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
-	VALUES (2, 'mary@gmail.com', 'I cannot recommend. This recipe uses too much cheese.');
+	VALUES (2, 'mary@gmail.com', 'I don''t recommend. This recipe uses too much cheese.');

@@ -61,8 +61,8 @@ namespace CookbookUnitTest
             Assert.IsNotNull(RecipeBLL.GetRecipeByID(r2_id));
 
             // Add reviews
-            Review review1 = new Review() { RecipeID = r2_id, UserID = 1, ReviewText = "Example Text One" };
-            Review review2 = new Review() { RecipeID = r2_id, UserID = 1, ReviewText = "Example Text Two" };
+            Review review1 = new Review() { RecipeID = r2_id, UserEmail = "joseph@gmail.com", ReviewText = "Example Text One" };
+            Review review2 = new Review() { RecipeID = r2_id, UserEmail = "mary@gmail.com", ReviewText = "Example Text Two" };
             RecipeBLL.CreateReview(review1);
             RecipeBLL.CreateReview(review2);
 

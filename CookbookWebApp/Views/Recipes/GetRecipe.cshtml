@@ -36,7 +36,9 @@
 </div>
 <div>
     <span class="h2 text-light">Reviews:</span>
-    <button class="btn btn-success text-light float-end">Add Review</button>
+    <button class="btn btn-success text-light float-end">
+        <span class="bi bi-plus-lg"></span> Add Review
+    </button>
     @if (Model.Reviews != null)
         @foreach (ReviewModel rm in Model.Reviews)
         {

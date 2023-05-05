@@ -20,5 +20,6 @@ namespace CookbookWebApp.Models
         public string? Directions { get; set; }
         public List<IngredientModel>? Ingredients { get; set; }
         public List<ReviewModel>? Reviews { get; set; }
+        public List<int>? Favorites { get; set; }
     }
 }

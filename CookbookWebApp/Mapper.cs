@@ -17,7 +17,8 @@ namespace CookbookWebApp
                 CookTime = r.CookTime,
                 Directions = r.Directions,
                 Ingredients = new List<IngredientModel>(),
-                Reviews = new List<ReviewModel>()
+                Reviews = new List<ReviewModel>(),
+                Favorites = r.Favorites
             };
 
             // Check for null ingredients in parameter
@@ -70,6 +71,7 @@ namespace CookbookWebApp
                 CookTime = r.CookTime,
                 Directions = r.Directions,
                 Ingredients = new List<Ingredient>()
+                Favorites = r.Favorites
             };
 
             // Check for null ingredients in parameter

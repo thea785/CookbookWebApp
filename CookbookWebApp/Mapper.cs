@@ -70,7 +70,7 @@ namespace CookbookWebApp
                 PrepTime = r.PrepTime,
                 CookTime = r.CookTime,
                 Directions = r.Directions,
-                Ingredients = new List<Ingredient>()
+                Ingredients = new List<Ingredient>(),
                 Favorites = r.Favorites
             };
 

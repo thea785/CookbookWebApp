@@ -16,6 +16,7 @@ namespace CookbookBLL
             {
                 recipe.Ingredients = GetIngredients(id);
                 recipe.Reviews = GetReviewsByRecipeID(id);
+                recipe.Favorites = FavoritesData.GetFavoritesByRecipeID(id);
             }
             return recipe;
         }
@@ -69,9 +70,12 @@ namespace CookbookBLL
             // First, delete the recipe's ingredients
             IngredientsData.DeleteIngredients(recipeID);
 
+            // Delete the favorites
+            FavoritesData.DeleteFavoritesByRecipeID(recipeID);
+
             // Delete the recipe's reviews
             //ReviewsData.DeleteReviewsByRecipeID(recipeID);
-            
+
             // Finally, delete the recipe
              RecipesData.DeleteRecipe(recipeID); 
         }
@@ -80,5 +84,13 @@ namespace CookbookBLL
             return false; 
         }
         
+        public static void CreateFavorite(int recipeID, int userID) 
+        {
+            FavoritesData.CreateFavorite(recipeID, userID);
+        }
+        public static void DeleteFavorite(int recipeID, int userID)
+        {
+            FavoritesData.CreateFavorite(recipeID, userID);
+        }
     }
 }

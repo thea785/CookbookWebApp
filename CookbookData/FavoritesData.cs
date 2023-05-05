@@ -4,7 +4,7 @@ using System.Data;
 
 namespace CookbookData
 {
-    internal class FavoritesData
+    public static class FavoritesData
     {
         // Creates a favorite for the given recipe and user
         public static void CreateFavorite(int recipeID, int userID)

@@ -10,5 +10,11 @@ namespace CookbookWebApp.Controllers
             RecipeBLL.DeleteFavorite(recipeID, userID);
             return RedirectToAction("GetRecipe", "Recipes", new { id = recipeID });
         }
+
+        public IActionResult CreateFavorite(int recipeID, int userID)
+        {
+            RecipeBLL.CreateFavorite(recipeID, userID);
+            return RedirectToAction("GetRecipe", "Recipes", new { id = recipeID });
+        }
     }
 }

@@ -8,12 +8,28 @@
 <a asp-controller="Recipes" asp-action="Index" method="get" class="btn btn-primary m-3" style="width:200px">Return To Index</a>
 
 <div class="container bg-secondary p-4 m-4">
-    <div class="d-flex justify-content-between">
+    @if (Context.Session.GetInt32("RoleID") == 1 || Context.Session.GetInt32("UserID") == null)
+    {
         <span class="h1 text-light">@ViewData["Title"]</span>
-        <a href="#" class="btn btn-primary btn-lg">
-            <span class="bi bi-heart"></span> Favorite
-        </a>
-    </div>
+    }
+    else if (!Model.Favorites.Contains((int)Context.Session.GetInt32("UserID")))
+    {
+        <div class="d-flex justify-content-between">
+            <span class="h1 text-light">@ViewData["Title"]</span>
+            <a asp-controller="Favorites" asp-action="CreateFavorite" asp-route-recipeID="@Model.RecipeID" asp-route-userID="@Context.Session.GetInt32("UserID")" class="btn btn-primary btn-lg">
+                <span class="bi bi-heart"></span> Favorite
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-between">
+            <span class="h1 text-light">@ViewData["Title"]</span>
+            <a asp-controller="Favorites" asp-action="DeleteFavorite" asp-route-recipeID="@Model.RecipeID" asp-route-userID="@Context.Session.GetInt32("UserID")" class="btn btn-primary btn-lg">
+                <span class="bi bi-heart-fill"></span>
+            </a>
+        </div>
+    }
     <div class="row row-cols-auto">
         <div class="col text-light">
             <b>Servings: @Model.Servings</b>

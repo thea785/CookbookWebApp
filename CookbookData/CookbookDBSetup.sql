@@ -49,7 +49,8 @@ CREATE TABLE Reviews (
 
 CREATE TABLE Favorites (
 	[UserID] int FOREIGN KEY REFERENCES Users(UserID),
-	[RecipeID] int FOREIGN KEY REFERENCES Recipes(RecipeID)
+	[RecipeID] int FOREIGN KEY REFERENCES Recipes(RecipeID),
+	primary key ([UserID], [RecipeID])
 );
 
 CREATE TABLE [dbo].[ExceptionLogging](
@@ -410,7 +411,7 @@ INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
 INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
 	VALUES (1, 'mary@gmail.com', 'Great taste and very easy to make. I used a bottled tomato sauce with basil.');
 INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
-	VALUES (1, 'joseph@gmail.com', 'I followed the instructions exactly, but the chicken came out tough and the cheese didn''t melt properly.')
+	VALUES (1, 'joseph@gmail.com', 'I followed the instructions exactly, but the chicken came out tough and the cheese didn''t melt properly.');
 INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
 	VALUES (1, 'david@gmail.com', 'My family loved it. It was easy to follow.');
 INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])

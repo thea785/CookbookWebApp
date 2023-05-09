@@ -44,7 +44,7 @@ CREATE TABLE Reviews (
 	[ReviewID] int IDENTITY(1,1) PRIMARY KEY,
 	[RecipeID] int FOREIGN KEY REFERENCES Recipes(RecipeID),
 	[UserEmail] varchar(20),
-	[ReviewText] varchar(100)
+	[ReviewText] varchar(200)
 );
 
 CREATE TABLE Favorites (

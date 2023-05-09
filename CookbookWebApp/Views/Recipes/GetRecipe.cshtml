@@ -52,9 +52,12 @@
 </div>
 <div>
     <span class="h2 text-light">Reviews:</span>
-    <button class="btn btn-success text-light float-end">
-        <span class="bi bi-plus-lg"></span> Add Review
-    </button>
+    @if (Context.Session.GetInt32("RoleID") > 1)
+    {
+        <a asp-controller="Reviews" asp-action="CreateReview" asp-route-recipeid="@Model.RecipeID" class="btn btn-success text-light float-end">
+            <span class="bi bi-plus-lg"></span> Add Review
+        </a>
+    }
     @if (Model.Reviews != null)
         @foreach (ReviewModel rm in Model.Reviews)
         {

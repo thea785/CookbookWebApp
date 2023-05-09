@@ -4,7 +4,7 @@
 }
 <h1 class="text-light">@ViewData["Title"]</h1>
 
-<form asp-controller="Recipes" class="" method="post">
+<form asp-controller="Reviews" class="" method="post">
     <div class="border border-secondary text-light p-3 mt-4">
         <div class="mb-3">
             <label asp-for="ReviewText"></label>
@@ -13,7 +13,7 @@
         </div>
         <input asp-for="UserEmail" type="hidden" value="@Context.Session.GetString("UserEmail")">
         <button type="submit" class="btn btn-success" style="width:150px">Create</button>
-        <a asp-controller="Reviews" asp-action="CreateReview" class="btn btn-secondary" style="width:150px">
+        <a asp-controller="Recipes" asp-action="GetRecipe" asp-route-id="@Model.RecipeID" class="btn btn-secondary" style="width:150px">
             Cancel
         </a>
     </div>

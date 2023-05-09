@@ -7,7 +7,12 @@ namespace CookbookWebApp.Controllers
 {
     public class ReviewsController : Controller
     {
-        public IActionResult CreateReview(ReviewModel rm)
+        public IActionResult CreateReview(int recipeid)
+        {
+            ReviewModel rm = new ReviewModel() { RecipeID = recipeid};
+            return View(rm);
+        }
+        public IActionResult CreateReviewSubmit(ReviewModel rm)
         {
             Review r = new Review() { RecipeID = rm.RecipeID, ReviewText = rm.ReviewText };
             RecipeBLL.CreateReview(r);

@@ -418,7 +418,7 @@ INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
 	VALUES (1, 'ruth@gmail.com', 'I''m usually not a fan of chicken, but this dish converted me. It''s now a regular in my meal rotation.');
 
 INSERT INTO Favorites ([RecipeID], [UserID])
-	VALUES (1, 2), (5, 2);
+	VALUES (1, 2), (1, 5);
 
 INSERT INTO Recipes ([Name], [Servings], [PrepTime], [CookTime], [Directions])
 VALUES ('Grilled Cheese Sandwich', 1, 2, 10, '1. Spread butter on the outer side of the bread.' + @Newline + '2. Heat a skillet on medium. Place bread on skillet.' + @Newline + '3. Stack cheeses on the bread. Once toasted, close the sandwich.' + @Newline + '4. Cook for six minutes or until brown. Cut diagonally and serve.');

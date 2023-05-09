@@ -90,7 +90,7 @@ namespace CookbookBLL
         }
         public static void DeleteFavorite(int recipeID, int userID)
         {
-            FavoritesData.CreateFavorite(recipeID, userID);
+            FavoritesData.DeleteFavorite(recipeID, userID);
         }
     }
 }

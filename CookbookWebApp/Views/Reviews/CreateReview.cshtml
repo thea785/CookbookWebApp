@@ -11,7 +11,7 @@
             <textarea asp-for="ReviewText" class="form-control text-light bg-secondary border-secondary"></textarea>
             <span asp-validation-for="ReviewText" class="text-danger"></span>
         </div>
-        <input asp-for="UserEmail" type="hidden" value="@Context.Session.GetString("UserEmail")">
+        <input asp-for="UserEmail" type="hidden" value="@Context.Session.GetString("Email")">
         <button type="submit" class="btn btn-success" style="width:150px">Create</button>
         <a asp-controller="Recipes" asp-action="GetRecipe" asp-route-id="@Model.RecipeID" class="btn btn-secondary" style="width:150px">
             Cancel

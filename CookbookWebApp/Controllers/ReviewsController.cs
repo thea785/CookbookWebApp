@@ -14,7 +14,7 @@ namespace CookbookWebApp.Controllers
         }
         public IActionResult CreateReviewSubmit(ReviewModel rm)
         {
-            Review r = new Review() { RecipeID = rm.RecipeID, ReviewText = rm.ReviewText };
+            Review r = new Review() { RecipeID = rm.RecipeID, ReviewText = rm.ReviewText, UserEmail=rm.UserEmail };
             RecipeBLL.CreateReview(r);
             return RedirectToAction("GetRecipe", "Recipes", new { id = rm.RecipeID });
         }

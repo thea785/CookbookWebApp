@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Create Review for Recipe with ID " + Model.RecipeID;
 }
-<h1 class="text-light">@ViewData["Title"]</h1>
+<h1 class="text-light">@ViewData["Title"] + @Context.Session.GetString("Email")</h1>
 
 <form asp-controller="Reviews" asp-action="CreateReviewSubmit" class="" method="post">
     <div class="border border-secondary text-light p-3 mt-4">
@@ -12,6 +12,7 @@
             <span asp-validation-for="ReviewText" class="text-danger"></span>
         </div>
         <input asp-for="UserEmail" type="hidden" value="@Context.Session.GetString("Email")">
+        <input asp-for="RecipeID" type="hidden" value="@Model.RecipeID">
         <button type="submit" class="btn btn-success" style="width:150px">Create</button>
         <a asp-controller="Recipes" asp-action="GetRecipe" asp-route-id="@Model.RecipeID" class="btn btn-secondary" style="width:150px">
             Cancel

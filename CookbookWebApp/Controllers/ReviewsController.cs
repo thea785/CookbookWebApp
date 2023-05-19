@@ -7,9 +7,9 @@ namespace CookbookWebApp.Controllers
 {
     public class ReviewsController : Controller
     {
-        public IActionResult CreateReview(int recipeid)
+        public IActionResult CreateReview(int recipeid, string recipename)
         {
-            ReviewModel rm = new ReviewModel() { RecipeID = recipeid};
+            ReviewModel rm = new ReviewModel() { RecipeID = recipeid, RecipeName = recipename};
             return View(rm);
         }
         public IActionResult CreateReviewSubmit(ReviewModel rm)

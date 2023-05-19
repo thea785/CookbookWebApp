@@ -1,8 +1,8 @@
 ﻿@model ReviewModel
 @{
-    ViewData["Title"] = "Create Review for Recipe with ID " + Model.RecipeID;
+    ViewData["Title"] = "Create Review for " + Model.RecipeName + " Recipe";
 }
-<h1 class="text-light">@ViewData["Title"] + @Context.Session.GetString("Email")</h1>
+<h1 class="text-light">@ViewData["Title"]</h1>
 
 <form asp-controller="Reviews" asp-action="CreateReviewSubmit" class="" method="post">
     <div class="border border-secondary text-light p-3 mt-4">

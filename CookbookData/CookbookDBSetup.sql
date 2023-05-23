@@ -326,7 +326,8 @@ CREATE PROCEDURE GetFavoritesByRecipeID
 	@RecipeID int
 AS
 BEGIN
-	SELECT * FROM Favorites
+	SELECT Favorites.RecipeID, Recipes.Name FROM Favorites
+	INNER JOIN Recipes ON Favorites.RecipeID = Recipes.RecipeID
 	WHERE Favorites.RecipeID=@RecipeID;
 END
 GO

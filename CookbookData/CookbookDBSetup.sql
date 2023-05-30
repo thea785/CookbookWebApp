@@ -322,24 +322,24 @@ GO
 
 USE Cookbook
 GO
-CREATE PROCEDURE GetFavoritesByRecipeID
-	@RecipeID int
+CREATE PROCEDURE GetFavoritesByUserID
+	@UserID int
 AS
 BEGIN
 	SELECT Favorites.RecipeID, Recipes.Name FROM Favorites
 	INNER JOIN Recipes ON Favorites.RecipeID = Recipes.RecipeID
-	WHERE Favorites.RecipeID=@RecipeID;
+	WHERE Favorites.UserID=@UserID;
 END
 GO
 
 USE Cookbook
 GO
-CREATE PROCEDURE GetFavoritesByUserID
-	@UserID int
+CREATE PROCEDURE GetFavoritesByRecipeID
+	@RecipeID int
 AS
 BEGIN
 	SELECT * FROM Favorites
-	WHERE Favorites.UserID=@UserID;
+	WHERE Favorites.RecipeID=@RecipeID;
 END
 GO
 

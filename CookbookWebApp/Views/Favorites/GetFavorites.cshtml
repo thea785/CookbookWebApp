@@ -1,0 +1,17 @@
+﻿@model List<FavoriteModel>
+
+<h1 class="text-light">Your Favorites</h1>
+
+<table class="table table-bordered table-dark">
+    @foreach (var fav in Model)
+    {
+        <tr>
+            <td>
+                @fav.RecipeName
+            </td>
+            <td>
+                <a asp-controller="Favorites" asp-action="DeleteFavorite" asp-route-userID="@Context.Session.GetInt32("UserID")" asp-route-recipeID="@fav.RecipeID" method="post" class="btn btn-warning" style="width:150px">Unfavorite</a>
+            </td>
+        </tr>
+    }
+</table>

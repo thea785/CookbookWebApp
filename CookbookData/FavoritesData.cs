@@ -84,11 +84,11 @@ namespace CookbookData
             }
         }
         // Returns a list of favorites for a given user
-        public static List<int> GetFavoritesByUserID(int userID)
+        public static List<Favorite> GetFavoritesByUserID(int userID)
         {
             string connString = ConnectionStringReader.Get();
 
-            List<int> favs = new List<int>();
+            List<Favorite> favs = new List<Favorite>();
             try
             {
                 using (SqlConnection dbcon = new SqlConnection(connString))
@@ -109,7 +109,13 @@ namespace CookbookData
                         {
                             while (reader.Read())
                             {
-                                favs.Add((int)reader["RecipeID"]);
+                                Favorite f = new Favorite()
+                                {
+                                    RecipeID = reader["RecipeID"] is DBNull ? 0 : (int)reader["RecipeID"],
+                                    RecipeName = reader["Name"] is DBNull ? "" : (string)reader["Name"]
+                                };
+
+                                favs.Add(f);
                             }
                         }
                     }

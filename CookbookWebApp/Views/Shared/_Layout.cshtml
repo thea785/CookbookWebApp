@@ -26,6 +26,9 @@
                         @if (Context.Session.GetInt32("RoleID") > 1)
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Favorites" asp-route-userID="@Context.Session.GetInt32("UserID")" asp-action="GetFavorites">Favorites</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
                             </li>
                         }

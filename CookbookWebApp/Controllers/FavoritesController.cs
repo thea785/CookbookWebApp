@@ -9,11 +9,18 @@ namespace CookbookWebApp.Controllers
     {
         public IActionResult GetFavorites(int userID)
         {
-
-            List<Favorite> favorites = new List<Favorite>();
-            RecipeBLL.GetFavorites(userID);
+            List<Favorite> favorites = RecipeBLL.GetFavorites(userID);
 
             List<FavoriteModel> favoriteModels = new List<FavoriteModel>();
+
+            foreach (Favorite favorite in favorites)
+            {
+                favoriteModels.Add(new FavoriteModel()
+                {
+                    RecipeID = favorite.RecipeID,
+                    RecipeName = favorite.RecipeName
+                });
+            }
             return View(favoriteModels);
         }
         public IActionResult DeleteFavorite(int recipeID, int userID)

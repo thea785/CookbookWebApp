@@ -92,5 +92,10 @@ namespace CookbookBLL
         {
             FavoritesData.DeleteFavorite(recipeID, userID);
         }
+
+        public static List<Favorite> GetFavorites(int userID)
+        {
+            return FavoritesData.GetFavoritesByUserID(userID);
+        }
     }
 }

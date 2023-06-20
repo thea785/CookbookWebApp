@@ -7,7 +7,7 @@
     {
         <tr>
             <td>
-                @fav.RecipeName
+                <a asp-controller="Recipes" asp-action="GetRecipe" asp-route-id="@fav.RecipeID" method="get" class="h4" style="width:150px">@fav.RecipeName</a>
             </td>
             <td>
                 <a asp-controller="Favorites" asp-action="DeleteFavorite" asp-route-userID="@Context.Session.GetInt32("UserID")" asp-route-recipeID="@fav.RecipeID" method="post" class="btn btn-warning" style="width:150px">Unfavorite</a>

@@ -437,3 +437,35 @@ INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
 
 INSERT INTO Reviews ([RecipeID], [UserEmail], [ReviewText])
 	VALUES (2, 'mary@gmail.com', 'I don''t recommend. This recipe uses too much cheese.');
+
+INSERT INTO Recipes ([Name], [Servings], [PrepTime], [CookTime], [Directions])
+VALUES ('Carrot Cake', 8, 20, 45, '1. Whisk dry and wet ingredients separately.' + @Newline + '2. Gently stir dry ingredients into wet ingredients.' + @Newline + '3. Stir in grated carrots.' + @Newline + '4. Bake for 30mins at 350 degrees.');
+
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (3, 'Flour', 2, 'cups');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (3, 'Granulated Sugar', 1, 'cups');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (3, 'Brown Sugar', 1, 'cups');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (3, 'Canola Oil', 1, 'cups');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (3, 'Eggs', 4, 'count');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (3, 'Grated Carrots', 3, 'cups');
+
+INSERT INTO Recipes ([Name], [Servings], [PrepTime], [CookTime], [Directions])
+VALUES ('Creamy Vegetable Soup', 8, 20, 45, '1. Chop vegetables into chunks.' + @Newline + '2. Fry vegetables for 10 mins.' + @Newline + '3. Simmer in stock for 15 minutes.' + @Newline + '4. Blend the soup until smooth and stir in half-and-half.');
+
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (4, 'Onion', 1, 'count');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (4, 'Carrots', 4, 'count');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (4, 'Celery Stalk', 4, 'count');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (4, 'Potatoes', 1, 'pound');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (4, 'Vegetable Stock', 3, 'cups');
+INSERT INTO Ingredients ([RecipeID], [Name], [Amount], [Units])
+	VALUES (4, 'Half-and-half', 4, 'Tbsp');

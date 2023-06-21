@@ -74,7 +74,7 @@ namespace CookbookBLL
             FavoritesData.DeleteFavoritesByRecipeID(recipeID);
 
             // Delete the recipe's reviews
-            //ReviewsData.DeleteReviewsByRecipeID(recipeID);
+            ReviewsData.DeleteReviewsByRecipeID(recipeID);
 
             // Finally, delete the recipe
              RecipesData.DeleteRecipe(recipeID); 

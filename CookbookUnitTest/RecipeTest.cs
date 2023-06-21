@@ -71,7 +71,6 @@ namespace CookbookUnitTest
             Assert.IsTrue(RecipeBLL.GetReviewsByRecipeID(r2_id).Any(rev => rev.ReviewText == "Example Text Two"));
 
             // Clean up the reviews and recipes
-            RecipeBLL.DeleteReviewsByRecipeID(r2_id);
             RecipeBLL.DeleteRecipe(r2_id);
 
             // Check that the recipe was deleted

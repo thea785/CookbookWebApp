@@ -21,7 +21,7 @@
                 <a asp-controller="Recipes" asp-action="GetRecipe" asp-route-id="@recipe.RecipeID" method="get" class="btn btn-success" style="width:150px">View Recipe</a>
                 @if (Context.Session.GetInt32("RoleID") > 1)
                 {
-                    <a asp-controller="Recipes" asp-action="DeleteRecipe" asp-route-id="@recipe.RecipeID" method="get" class="btn btn-danger" style="width:150px">Delete</a>
+                    <a asp-controller="Recipes" asp-action="DeleteRecipe" asp-route-id="@recipe.RecipeID" method="get" class="btn btn-danger mt-3" style="width:150px">Delete</a>
                 }
             </div>
         </div>

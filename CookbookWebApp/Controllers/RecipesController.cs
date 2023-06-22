@@ -62,9 +62,11 @@ namespace CookbookWebApp.Controllers
         }
 
         // Delete a given recipe
-        public IActionResult Delete(int recipeID)
+        public IActionResult DeleteRecipe(int id)
         {
-            return View();
+            RecipeBLL.DeleteRecipe(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

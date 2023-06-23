@@ -3,9 +3,17 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="d-flex justify-content-between">
     <h3 class="text-light">Recipes</h3>
-    <a asp-controller="Recipes" asp-action="CreateRecipe" method="get" class="btn btn-primary mb-3" style="width:200px">Create Recipe</a>
+    @if (Context.Session.GetInt32("RoleID") > 2)
+    {
+        <a asp-controller="Recipes" asp-action="CreateRecipe" method="get" class="btn btn-primary mb-3" style="width:200px">Create Recipe</a>
+    }
+    else
+    {
+        <button class="invisible"></button>
+    }
 </div>
 
 
@@ -19,7 +27,7 @@
                 <pre class="card-text">Prep Time: @recipe.PrepTime min</pre>
                 <pre class="card-text">Cook Time: @recipe.CookTime min</pre>
                 <a asp-controller="Recipes" asp-action="GetRecipe" asp-route-id="@recipe.RecipeID" method="get" class="btn btn-success" style="width:150px">View Recipe</a>
-                @if (Context.Session.GetInt32("RoleID") > 1)
+                @if (Context.Session.GetInt32("RoleID") > 2)
                 {
                     <a asp-controller="Recipes" asp-action="DeleteRecipe" asp-route-id="@recipe.RecipeID" method="get" class="btn btn-danger mt-3" style="width:150px">Delete</a>
                 }

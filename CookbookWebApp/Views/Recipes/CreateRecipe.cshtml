@@ -31,6 +31,11 @@
             <textarea asp-for="Directions" class="form-control text-light bg-secondary border-secondary"></textarea>
             <span asp-validation-for="Directions" class="text-danger"></span>
         </div>
+        <div class="mb-3">
+            <label>Ingredients List</label>
+            <textarea asp-for="Directions" class="form-control text-light bg-secondary border-secondary"></textarea>
+            <span asp-validation-for="Directions" class="text-danger"></span>
+        </div>
         <button type="submit" class="btn btn-success" style="width:150px">Create</button>
         <a asp-controller="Recipes" asp-action="Index" class="btn btn-secondary" style="width:150px">
             Cancel

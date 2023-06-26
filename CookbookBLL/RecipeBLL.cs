@@ -97,5 +97,36 @@ namespace CookbookBLL
         {
             return FavoritesData.GetFavoritesByUserID(userID);
         }
+
+        // Given an ingredient input string, return a list of ingredient objects
+        public static List<Ingredient> ParseIngredientInput(string input, int recipeID)
+        {
+            List<Ingredient> ingredients = new List<Ingredient>();
+
+            // Split the ingredient string by comma
+            string[] ingredientStrings = input.Split(',', System.StringSplitOptions.RemoveEmptyEntries);
+            
+            foreach (string s in ingredientStrings)
+            {
+                // Split each ingredient by space character
+                string[] splitString = input.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
+
+                // Check if the splitString is valid
+                int amount;
+                if (splitString.Length == 3 && Int32.TryParse(splitString[0], out amount) && splitString[1].Length > 0 && splitString[2].Length > 0)
+                {
+                    // Add the ingredient into the return list
+                    ingredients.Add(new Ingredient()
+                    {
+                        RecipeID = recipeID,
+                        Name = splitString[2],
+                        Amount = amount,
+                        Units = splitString[1]
+                    });
+                }
+            }
+
+            return ingredients;
+        }
     }
 }

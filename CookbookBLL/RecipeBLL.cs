@@ -113,8 +113,15 @@ namespace CookbookBLL
 
                 // Check if the splitString is valid
                 int amount;
-                if (splitString.Length == 3 && Int32.TryParse(splitString[0], out amount) && splitString[1].Length > 0 && splitString[2].Length > 0)
+                if (splitString.Length >= 3 && Int32.TryParse(splitString[0], out amount) && splitString[1].Length > 0 && splitString[2].Length > 0)
                 {
+                    // Combine ingredient name tokens into one
+                    string name = splitString[2];
+                    for (int i = 3; i < splitString.Length; i++)
+                    {
+                        name += " " + splitString[i];
+                    }
+
                     // Add the ingredient into the return list
                     ingredients.Add(new Ingredient()
                     {

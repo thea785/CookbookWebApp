@@ -97,5 +97,22 @@ namespace CookbookUnitTest
             RecipesData.DeleteRecipe(r3_id);
             RecipesData.DeleteRecipe(r4_id);
         }
+
+        [TestMethod]
+        public void TestParseIngredientInput()
+        {
+            // Create ingredient input string
+            string inputString = "2 cups flour, 1 cup milk, 1 tsp vanilla extract";
+
+            // Call Parse method
+            List<Ingredient> ingredients = RecipeBLL.ParseIngredientInput(inputString, 2);
+
+            // Check the data in the resulting object
+            Assert.AreEqual(ingredients[0].Amount, 2);
+            Assert.AreEqual(ingredients[0].Name, "flour");
+            Assert.AreEqual(ingredients[1].Units, "cup");
+            Assert.AreEqual(ingredients[2].Name, "vanilla extract");
+            Assert.AreEqual(ingredients[2].Units, "tsp");
+        }
     }
 }

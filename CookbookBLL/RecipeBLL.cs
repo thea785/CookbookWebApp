@@ -109,7 +109,7 @@ namespace CookbookBLL
             foreach (string s in ingredientStrings)
             {
                 // Split each ingredient by space character
-                string[] splitString = input.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
+                string[] splitString = s.Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
 
                 // Check if the splitString is valid
                 int amount;
@@ -126,7 +126,7 @@ namespace CookbookBLL
                     ingredients.Add(new Ingredient()
                     {
                         RecipeID = recipeID,
-                        Name = splitString[2],
+                        Name = name,
                         Amount = amount,
                         Units = splitString[1]
                     });

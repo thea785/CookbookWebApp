@@ -48,7 +48,7 @@ namespace CookbookWebApp.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            RecipeBLL.CreateRecipe(Mapper.ModelToRecipe(m));
+            RecipeBLL.CreateRecipe(Mapper.ModelToRecipe(m), m.IngredientsInput);
 
             return RedirectToAction("Index");
         }

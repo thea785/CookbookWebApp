@@ -44,19 +44,29 @@ namespace CookbookBLL
             ReviewsData.DeleteReviewsByUserEmail(userEmail);
         }
 
-        public static int CreateRecipe(Recipe r) {
+        public static int CreateRecipe(Recipe r, string? ingredientInput) {
             // Create the recipe
             int recipeID = RecipesData.CreateRecipe(r);
 
-            if (r.Ingredients == null)
-                return recipeID;
-
-            // Add its ingredients
-            foreach(Ingredient ingredientItem in r.Ingredients)
+            if (r.Ingredients != null)
             {
-                ingredientItem.RecipeID = recipeID;
-                IngredientsData.CreateIngredient(ingredientItem);
+                // Add its ingredients
+                foreach (Ingredient ingredientItem in r.Ingredients)
+                {
+                    ingredientItem.RecipeID = recipeID;
+                    IngredientsData.CreateIngredient(ingredientItem);
+                }
             }
+            else if (ingredientInput != null)
+            {
+                List<Ingredient> ingredients = ParseIngredientInput(ingredientInput, recipeID);
+
+                foreach (Ingredient ingredientItem in ingredients)
+                {
+                    IngredientsData.CreateIngredient(ingredientItem);
+                }
+            }
+            
             // Return the recipe's id
             return recipeID;
         }

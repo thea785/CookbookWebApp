@@ -33,7 +33,7 @@ namespace CookbookUnitTest
             Ingredient i1 = new Ingredient() { Name = "testIngredient1", Amount = 2, Units = "cups" };
             Ingredient i2 = new Ingredient() { Name = "testIngredient2", Amount = 1, Units = "tsp" };
             r2.Ingredients = new List<Ingredient> { i1, i2 };
-            int r2_id = RecipeBLL.CreateRecipe(r2);
+            int r2_id = RecipeBLL.CreateRecipe(r2, "");
 
             // Check if the recipe is in the database
             Assert.IsNotNull(RecipeBLL.GetRecipeByID(r2_id));
@@ -55,7 +55,7 @@ namespace CookbookUnitTest
         {
             // Create a recipe with ingredients and add it to the database
             Recipe r2 = new Recipe() { Name = "testRecipe2", Servings = 1, PrepTime = 10, CookTime = 20, Directions = "testDirections2" };
-            int r2_id = RecipeBLL.CreateRecipe(r2);
+            int r2_id = RecipesData.CreateRecipe(r2);
 
             // Check if the recipe is in the database
             Assert.IsNotNull(RecipeBLL.GetRecipeByID(r2_id));

@@ -123,7 +123,7 @@ CREATE PROCEDURE UpdateRecipe
 AS
 BEGIN
 	UPDATE Recipes
-	SET Name=@Name, Servings=@Servings, PrepTime=@PrepTime, CookTime=@CookTime, Directions=@Directions
+	SET [Name]=@Name, Servings=@Servings, PrepTime=@PrepTime, CookTime=@CookTime, Directions=@Directions
 	WHERE RecipeID=@RecipeID
 END
 GO
@@ -152,6 +152,21 @@ AS
 BEGIN
 	SELECT * FROM Ingredients
 	WHERE RecipeID=@RecipeID;
+END
+GO
+
+USE Cookbook
+GO
+CREATE PROCEDURE UpdateIngredient
+	@IngredientID int,
+	@Name varchar(100),
+	@Amount int,
+	@Units varchar(100)
+AS
+BEGIN
+	UPDATE Ingredients
+	SET [Name]=@Name, Amount=@Amount, Units=@Units
+	WHERE IngredientID = @IngredientID;
 END
 GO
 

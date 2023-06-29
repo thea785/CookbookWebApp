@@ -242,6 +242,20 @@ GO
 
 USE Cookbook
 GO
+CREATE PROCEDURE UpdateUserPassword
+	@UserID int,
+	@HashedPassword varchar(MAX),
+	@Salt varchar(255)
+AS
+BEGIN
+	UPDATE Users
+	SET HashedPassword=@HashedPassword, Salt=@Salt
+	WHERE UserID=@UserID
+END
+GO
+
+USE Cookbook
+GO
 CREATE PROCEDURE DeleteUser
 	@paramUserID int
 AS

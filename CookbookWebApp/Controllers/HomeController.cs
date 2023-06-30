@@ -84,6 +84,38 @@ namespace CookbookWebApp.Controllers
             return RedirectToAction("Index", "Recipes");
         }
 
+        [HttpGet]
+        public IActionResult UpdatePassword()
+        {
+            // Check for guest user
+            if (HttpContext.Session.GetInt32("UserID") == 0)
+            {
+                // Go to index
+                return RedirectToAction("Index", "Recipes");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePassword(UpdatePasswordModel m)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            // Check for invalid session
+            if (HttpContext.Session.GetString("Email") == null || HttpContext.Session.GetString("Email") == "")
+                return View();
+
+            // Update password
+            UsersBLL.UpdateUserPassword(HttpContext.Session.GetString("Email"), m.Password);
+
+            // Go to index
+            return RedirectToAction("Index", "Recipes");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

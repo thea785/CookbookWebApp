@@ -158,5 +158,56 @@ namespace CookbookData
                 return ingredients;
             }
         }
+
+        public static int UpdateIngredient(Ingredient i)
+        {
+            string connString = ConnectionStringReader.Get();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("CreateRecipe", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramRecipeID = _sqlCommand.CreateParameter();
+                        _paramRecipeID.DbType = DbType.Int32;
+                        _paramRecipeID.ParameterName = "@IngredientID";
+                        _paramRecipeID.Value = i.IngredientID;
+                        _sqlCommand.Parameters.Add(_paramRecipeID);
+
+                        SqlParameter _paramName = _sqlCommand.CreateParameter();
+                        _paramName.DbType = DbType.String;
+                        _paramName.ParameterName = "@Name";
+                        _paramName.Value = i.Name;
+                        _sqlCommand.Parameters.Add(_paramName);
+
+                        SqlParameter _paramServings = _sqlCommand.CreateParameter();
+                        _paramServings.DbType = DbType.Int32;
+                        _paramServings.ParameterName = "@Amount";
+                        _paramServings.Value = i.Amount;
+                        _sqlCommand.Parameters.Add(_paramServings);
+
+                        SqlParameter _paramPrepTime = _sqlCommand.CreateParameter();
+                        _paramPrepTime.DbType = DbType.String;
+                        _paramPrepTime.ParameterName = "@Units";
+                        _paramPrepTime.Value = i.Units;
+                        _sqlCommand.Parameters.Add(_paramPrepTime);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery(); // calls the sp
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+                return 0;
+            }
+            return 1;
+        }
     }
 }
